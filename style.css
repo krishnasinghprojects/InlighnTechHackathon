@@ -5,7 +5,7 @@
     --text-color: #E0E1DD;
     --primary-highlight: #4de6d3;
     --glass-bg: rgba(18, 51, 56, 0.4);
-    --font-family: 'Poppins', sans-serif;
+    --font-family:'Noto Serif', 'Times New Roman', Times, serif;
     --border-radius: 20px;
     --font-family: 'Poppins', sans-serif;
     --border-radius: 20px;
@@ -24,8 +24,9 @@
 body {
     background-color: var(--primary-bg-color);
     color: var(--text-color);
-    font-family: var(--font-family);
+    font-family: 'Noto Serif', 'Times New Roman', Times, serif !important;
     overflow-x: hidden;
+
 }
 #loader {
     position: fixed;
