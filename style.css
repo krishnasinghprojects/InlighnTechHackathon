@@ -1,0 +1,4928 @@
+:root {
+    --primary-bg-color: #010001;
+    --secondary-bg-color: #123338;
+    --accent-color: #14574d;
+    --text-color: #E0E1DD;
+    --primary-highlight: #4de6d3;
+    --glass-bg: rgba(18, 51, 56, 0.4);
+    --font-family: 'Poppins', sans-serif;
+    --border-radius: 20px;
+    --font-family: 'Poppins', sans-serif;
+    --border-radius: 20px;
+     --glass-bg: rgba(18, 51, 56, 0.4); 
+     --cursor:url('CursorDark.png'),auto;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+*{
+    cursor:var(--cursor) !important;
+  }
+body {
+    background-color: var(--primary-bg-color);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    overflow-x: hidden;
+}
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Added a subtle animated background gradient for the "wave across the screen" effect */
+    background: 
+        linear-gradient(90deg, 
+            rgba(77, 230, 211, 0.05) 0%, /* Start with subtle highlight */
+            rgba(77, 230, 211, 0.15) 25%, /* Peak highlight */
+            rgba(77, 230, 211, 0.05) 50%, /* Return to subtle */
+            rgba(77, 230, 211, 0.15) 75%, /* Second peak */
+            rgba(77, 230, 211, 0.05) 100% /* End subtle */
+        ),
+        var(--primary-bg-color); /* Your main dark background color */
+    background-size: 200% 100%; /* Make the gradient wider than the screen */
+    background-position: 0% 0%; /* Initial position */
+    animation: backgroundWave 15s infinite linear; /* Smooth, continuous wave animation */
+
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease-out; /* Smooth transition for hiding the loader */
+    overflow: hidden; /* Ensures the background animation stays within bounds */
+}
+
+.loader-circle {
+    text-align: center;
+    position: relative;
+    width: 200px; /* Size of the main circle */
+    height: 200px;
+    border-radius: 50%;
+    background: var(--glass-bg); /* Glassy background */
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    
+    /* Initial subtle glow and shadow */
+    box-shadow: 
+        0 0 30px rgba(77, 230, 211, 0.3), /* Inner highlight glow */
+        0 0 60px rgba(0, 0, 0, 0.5); /* Outer shadow */
+    
+    display: flex;
+    justify-content: center; /* Centers text horizontally */
+    align-items: center; /* Centers text vertically */
+    
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-highlight);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(77, 230, 211, 0.6); /* Text glow */
+    
+    border: 2px solid rgba(77, 230, 211, 0.5); /* Glowing border */
+
+    /* Animation properties for the circle itself */
+    animation: 
+        pulseGlow 2.5s infinite alternate ease-in-out, /* Pulsating glow for the circle */
+        rotate3D 10s infinite linear; /* Subtle continuous 3D rotation */
+    transform-style: preserve-3d; /* Enable 3D transforms for any future children or pseudo-elements */
+    will-change: transform, box-shadow, border-color, filter;
+}
+
+/* Pseudo-element for the moving border light effect */
+.loader-circle::before {
+    content: '';
+    position: absolute;
+    inset: -5px; /* Create a pseudo-element slightly larger than the circle */
+    border-radius: 50%;
+    border: 5px solid transparent;
+    background: linear-gradient(45deg, var(--primary-highlight), transparent, var(--primary-highlight)); /* Gradient border for moving light effect */
+    background-clip: padding-box, border-box;
+    background-origin: border-box;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: exclude; /* For Webkit browsers */
+    pointer-events: none;
+    z-index: -1; /* Behind the main circle */
+    animation: rotateBorder 3s infinite linear; /* Animation for the moving border */
+    filter: blur(2px); /* Blur to make it more ethereal */
+    opacity: 0.7;
+}
+
+/* Keyframes for the background wave animation */
+@keyframes backgroundWave {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 0%; }
+}
+
+/* Keyframes for the circle's pulsating glow */
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 
+            0 0 30px rgba(77, 230, 211, 0.3), 
+            0 0 60px rgba(0, 0, 0, 0.5);
+        border-color: rgba(77, 230, 211, 0.5);
+        filter: brightness(1);
+    }
+    50% {
+        box-shadow: 
+            0 0 60px rgba(77, 230, 211, 0.8), /* Stronger glow */
+            0 0 120px rgba(0, 0, 0, 0.8); /* Wider shadow */
+        border-color: rgba(77, 230, 211, 1);
+        filter: brightness(1.2);
+    }
+    100% {
+        box-shadow: 
+            0 0 30px rgba(77, 230, 211, 0.3), 
+            0 0 60px rgba(0, 0, 0, 0.5);
+        border-color: rgba(77, 230, 211, 0.5);
+        filter: brightness(1);
+    }
+}
+
+/* Keyframes for the circle's subtle 3D rotation */
+@keyframes rotate3D {
+    0% { transform: rotateY(0deg) rotateX(0deg); }
+    25% { transform: rotateY(10deg) rotateX(5deg); }
+    50% { transform: rotateY(0deg) rotateX(0deg); }
+    75% { transform: rotateY(-10deg) rotateX(-5deg); }
+    100% { transform: rotateY(0deg) rotateX(0deg); }
+}
+
+/* Keyframes for the rotating border light effect */
+@keyframes rotateBorder {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+/* Fallback for browsers not supporting backdrop-filter */
+@supports not (backdrop-filter: blur(10px)) {
+    .loader-circle {
+        background: rgba(18, 51, 56, 0.8); /* Less transparent solid background */
+    }
+}
+.wave-container {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid var(--primary-highlight);
+    position: relative;
+    overflow: hidden;
+}
+
+.wave-container::before, .wave-container::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    bottom: 0;
+    left: 50%;
+    background-color: var(--primary-highlight);
+    border-radius: 45%;
+    transform: translateX(-50%);
+    animation: wave 5s linear infinite;
+}
+
+.wave-container::after {
+    border-radius: 40%;
+    background-color: rgba(77, 230, 211, 0.5);
+    animation: wave 5s linear infinite;
+    animation-delay: -2.5s;
+}
+
+@keyframes wave {
+    0% { transform: translateX(-50%) rotate(0deg); }
+    100% { transform: translateX(-50%) rotate(360deg); }
+}
+
+.container {
+    width: 90%;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+header {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    z-index: 1000;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    gap: 20px;
+}
+
+.logo img {
+    height: 80px;
+    margin-right: 10px;
+}
+
+nav.desktop-nav .nav-links {
+    display: flex;
+    list-style: none;
+}
+
+nav.desktop-nav .nav-links li {
+    margin: 0 1.5rem;
+}
+
+nav.desktop-nav .nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
+    transition: color 0.3s;
+    padding: 5px 0;
+    position: relative;
+}
+
+nav.desktop-nav .nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: var(--primary-highlight);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+nav.desktop-nav .nav-links a.active::after,
+nav.desktop-nav .nav-links a:hover::after {
+    width: 100%;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap:5px;
+}
+
+.btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary-highlight);
+    color: #08070b;
+}
+
+.btn-primary:hover {
+    filter: brightness(1.2);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-highlight);
+    border: 2px solid var(--primary-highlight);
+    /* Add transition for smooth animation */
+    transition: background-color 0.3s ease, color 0.3s ease !important;
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-highlight);
+    color: #08070b;
+}
+
+.burger-menu {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-bg-color);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(100%);
+    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.mobile-nav.open {
+    transform: translateX(0);
+}
+.nav-links-mobile {
+    list-style: none;
+    text-align: center;
+}
+.nav-links-mobile li {
+    margin: 2rem 0;
+}
+.nav-links-mobile a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 2rem;
+    font-weight: 600;
+}
+.nav-links-mobile a.active {
+    color: var(--primary-highlight);
+}
+
+
+#page-content {
+    padding-top: 120px;
+    position: relative;
+}
+.page-section {
+    display: none;
+    padding: 4rem 0;
+    min-height: 80vh;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+.page-section.active {
+    display: block;
+    opacity: 1;
+}
+
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+
+}
+
+/* MODIFIED: Hero section ratio change */
+.content-left { width: 50vw; }
+.content-right { width: 50vw; height: 50vh; }
+
+/* FIX: Spline scroll issue */
+.content-right iframe {
+    pointer-events: auto; /* Re-enable pointer events on the iframe itself */
+}
+.content-right {
+    position: relative;
+}
+.content-right::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    pointer-events: none; /* This overlay will not capture mouse events */
+}
+body.scrolling .content-right::after {
+    pointer-events: all; /* When scrolling, this overlay captures mouse events */
+}
+
+
+iframe { width: 100%; height: 100%; border-radius: var(--border-radius); }
+.hero-section h1 { font-size: 2rem; line-height: 1.2; margin-bottom: 1.5rem; }
+.hero-section p { font-size: 1.2rem; margin-bottom: 2.5rem; max-width: 500px; color: #aaa; text-align: justify;}
+
+.acd { text-align: center !important; 
+    font-size: 2.5rem; 
+    line-height: 1.2; margin-bottom: 1.5rem; color: white; }
+.about-us-container h2, .programs-container h2, .contact-container h2 {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    color: var(--primary-highlight);
+}
+.accreditations {
+    display: flex;
+    justify-content: center;
+    gap: 5rem; /* Spacing between items */
+    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+    padding: 1rem; /* Add some padding around the container */
+}
+
+
+
+
+/* Accreditations Section (Container) */
+.accreditations {
+    display: flex;
+    justify-content: center;
+    gap: 3rem; /* Spacing between items */
+    margin-bottom: 4rem;
+    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+    padding: 1rem; /* Add some padding around the container */
+    
+    /* Add perspective and transform-style to the container to allow 3D for items */
+    perspective: 800px; /* Adjust as needed for depth */
+    transform-style: preserve-3d;
+}
+
+/* Individual Accreditation Item Box */
+.accreditation-item {
+    background: var(--glass-bg); /* Apply liquid glass background */
+    backdrop-filter: blur(15px) saturate(180%); /* Frosted glass effect */
+    -webkit-backdrop-filter: blur(15px) saturate(180%); /* Safari support */
+    
+    padding: 1.5rem;
+    border-radius: var(--border-radius); /* Keep curvy look */
+    text-align: center;
+    position: relative; /* For z-index and potential absolute positioning */
+    
+    border: 1px solid rgba(77, 230, 211, 0.15); /* Subtle glassy border */
+    
+    /* Initial subtle glow and depth for the item box itself */
+    box-shadow: 
+        0 4px 15px rgba(77, 230, 211, 0.08), /* Soft inner highlight glow */
+        0 8px 30px rgba(0, 0, 0, 0.3); /* Deeper shadow for lift */
+
+    /* Comprehensive transitions for the item box */
+    transition: 
+        background 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        border-color 0.5s ease-in-out;
+    will-change: transform, box-shadow, background, border-color;
+    
+    /* Promote to its own composite layer for smoother transitions */
+    transform: translateZ(0); 
+}
+
+.accreditation-item:hover {
+    background: var(--item-bg-hover-intensity); /* Slightly less transparent background on hover */
+    transform: translateY(-10px) scale(1.02) translateZ(10px); /* Lift and slight scale, bring forward */
+    border-color: rgba(77, 230, 211, 0.4); /* Border becomes more prominent */
+    
+    /* Enhanced glow on hover for the item box */
+    box-shadow: 
+        0 0 30px rgba(77, 230, 211, 0.4), /* Primary glow, wider */
+        0 0 60px rgba(77, 230, 211, 0.2), /* Secondary, larger halo glow */
+        0 20px 50px rgba(0, 0, 0, 0.7); /* Stronger shadow for significant lift */
+}
+
+.accreditation-item img {
+    aspect-ratio: 1/1;
+    height: auto;
+    display: block; /* Remove extra space below image */
+    border-radius: var(--border-radius); /* Match item's border-radius for consistency */
+    max-width: 150px; /* Added max-width for better control */
+    
+    /* Enhanced subtle shadow and glow for images */
+    box-shadow: 
+        0 0 25px rgba(77, 230, 211, 0.2), /* Brighter highlight glow around image */
+        0 10px 30px rgba(0, 0, 0, 0.4); /* Deeper shadow */
+    
+    /* Transitions for image effects, including transform for 3D */
+    transition: 
+        transform 0.5s ease-in-out, /* Changed to ease-in-out for more consistent smoothness */
+        box-shadow 0.6s ease-in-out, /* Changed to ease-in-out */
+        filter 0.5s ease-in-out; /* For brightness/contrast changes if needed */
+    will-change: transform, box-shadow, filter;
+    transform: translateZ(0); /* Promote to its own composite layer for smoother 3D */
+}
+
+.accreditation-item:hover img {
+    /* Increased rotation, scale, and Z-translation for more visible 3D turn and grow */
+
+    /* More pronounced glow on hover for images */
+    box-shadow: 
+        0 0 60px rgba(77, 230, 211, 0.7), /* Significantly brighter glow */
+        0 0 100px rgba(77, 230, 211, 0.4), /* Wider halo */
+        0 25px 70px rgba(0, 0, 0, 0.8); /* Stronger overall shadow for lift */
+    filter: brightness(1.3); /* Make it pop more with brightness */
+}
+
+.accreditation-item p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-color); /* Use text color from root */
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: opacity 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.accreditation-item:hover p {
+    opacity: 1; /* Make text fully opaque on hover */
+    color: var(--primary-highlight); /* Highlight text on hover */
+}
+
+
+.about-us-content {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+}
+.about-us-image {
+    width: 45%;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+.about-us-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.about-us-text {
+    width: 55%;
+}
+.about-us-text h3 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+.about-us-text p {
+    font-size: 1.1rem;
+    color: #aaa;
+    margin-bottom: 2rem;
+}
+.cards-container {
+    display: grid ;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjusted minmax */
+    gap: 2.5rem; /* Adjusted gap */
+}
+
+/* NEW: Program card styles */
+.program-card {
+    background: #45ffef2c;
+    color: #000;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+}
+.program-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+.program-card-image img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+.program-card-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.program-card-content h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #111;
+}
+.program-card-content .rating {
+    color: #f5b700;
+    margin-bottom: 1rem;
+}
+.program-card-content p {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+.btn-learn-more {
+    display: inline-block;
+    background-color: #F8991D;
+    color: #ffffff;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    align-self: flex-start; /* Align button to the start of the flex item */
+}
+.btn-learn-more:hover {
+    background-color: #e0881a;
+}
+/* End of new styles */
+
+.contact-container p { text-align: center; max-width: 600px; margin: -2rem auto 3rem; color: #aaa; }
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 700px;
+    margin: 0 auto;
+    gap: 1.5rem;
+}
+.contact-form input, .contact-form textarea {
+    background-color: var(--secondary-bg-color);
+    border: 1px solid var(--accent-color);
+    padding: 1rem;
+    border-radius: 15px;
+    color: var(--text-color);
+    font-family: var(--font-family);
+}
+
+.animate-in {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.animate-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+@media (max-width: 1024px) {
+    .desktop-nav { display: none; }
+    .burger-menu { display: block; }
+    .hero-section { flex-direction: column; text-align: center; }
+    /* MODIFIED: Hero section ratio for mobile */
+    .content-left, .content-right { width: 100%; }
+    .content-right { height: 50vh; }
+    .hero-section p { margin-left: auto; margin-right: auto; }
+    .about-us-content { flex-direction: column; }
+    .about-us-image, .about-us-text { width: 100%; }
+}
+@media (max-width: 768px) {
+    header { padding: 0.8rem 1.5rem; top: 10px; }
+    .hero-section h1, .about-us-text h3, .about-us-container h2, .programs-container h2, .contact-container h2 { font-size: 2.2rem; }
+    .cards-container {
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+    }
+    .brand-name{
+        text-align: center !important;
+    }
+    .loginPortal{
+        display: none;
+    }
+}
+
+.break {
+    width: 90%;
+    height: 2.5px;
+    margin: 75px auto;
+    
+    /* Gradient ray effect using your palette */
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--primary-highlight),
+      var(--accent-color),
+      var(--primary-highlight),
+      transparent
+    );
+  
+    border: none;
+    border-radius: 2px;
+    animation: lineReveal 0.8s ease-out forwards;
+  }
+
+  .brand-name {
+    font-size: 3rem !important;/* Increased size for better visual impact */
+    font-weight: 900; /* Boldest weight for a strong look */
+    text-transform: uppercase; /* Optional: Make it all caps */
+    letter-spacing: 2px; /* Optional: Adjust spacing */
+
+    /* Gradient properties */
+    background: linear-gradient(to right, #00FFFF, #008080, #4682B4); /* Cyan, Teal, Steel Blue */
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* Animation properties */
+    transition: background-position 0.6s ease-in-out, text-shadow 0.4s ease-in-out;
+    background-size: 300% 100%; /* Wider background for movement */
+
+    /* Initial glow (subtle or none) */
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0); /* Start with no visible glow (alpha 0) */
+    cursor: pointer; /* Indicates it's interactive */
+}
+
+.brand-name:hover {
+    background-position: 100% 0; /* Moves the gradient fully to the right */
+    text-shadow: 0 0 25px rgba(0, 255, 255, 0.9), /* Stronger cyan glow */
+                 0 0 40px rgba(0, 128, 128, 0.447); /* Secondary teal glow for depth */
+}
+
+.features-section {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    padding: 2rem 0;
+    position: relative; /* Establish positioning context for children */
+    perspective: 1500px; /* Stronger perspective for a more noticeable 3D effect */
+    transform-style: preserve-3d; /* Allows child elements to be positioned in 3D space */
+
+    /* Subtle lift and shadow for the section itself */
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+    border-radius: var(--border-radius); /* Use the general border-radius for the section */
+    transition: box-shadow 0.5s ease-out, transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Add transform transition here */
+    will-change: transform, box-shadow;
+    transform: translateZ(0); /* For consistent rendering */
+}
+
+/* Hover effect for the entire features section to initiate the "drop" */
+.features-section:hover {
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6);
+    /* Subtle overall section movement for parallax feel */
+    transform: translateY(-10px) scale(1.005); /* Slightly more lift and scale */
+}
+
+.features-section .image-content {
+    flex: 1;
+    max-width: 40%; /* Made image content smaller */
+    position: relative;
+    /* Apply a distinct Z-depth to the image content */
+    transform: translateZ(80px); /* Brings the image content forward initially */
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+}
+
+/* On features-section hover, image content drops down slightly and moves back in Z-space with rotation */
+.features-section:hover .image-content {
+    transform: translateY(25px) translateZ(30px) rotateY(10deg); /* Increased drop, more rotation, moves further back */
+}
+
+
+.features-section .image-content img {
+    width: 100%;
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(77, 230, 211, 0.2);
+    box-shadow: 
+        0 0 20px rgba(77, 230, 211, 0.15),
+        0 15px 50px rgba(0, 0, 0, 0.5);
+    transition: 
+        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        border-color 0.4s ease-in-out;
+    will-change: transform, box-shadow, border-color;
+}
+
+.features-section .image-content img:hover {
+    transform: scale(1.02);
+    box-shadow: 
+        0 0 40px rgba(77, 230, 211, 0.4),
+        0 0 80px rgba(77, 230, 211, 0.2),
+        0 25px 70px rgba(0, 0, 0, 0.8);
+    border-color: rgba(77, 230, 211, 0.6);
+}
+
+.features-section .features-list {
+    flex: 1;
+    max-width: 55%; /* Made features list smaller relative to overall section */
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    /* Apply a different Z-depth to the feature list */
+    transform: translateZ(0px); /* Keeps features list slightly behind or at original plane initially */
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+}
+
+/* On features-section hover, features list drops down slightly and moves forward in Z-space with rotation */
+.features-section:hover .features-list {
+    transform: translateY(30px) translateZ(50px) rotateY(-8deg); /* Increased drop, more rotation, moves further forward */
+}
+
+.feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 1.5rem;
+
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border-radius: var(--border-radius); /* Keeps the curvy look for items */
+    
+    border: 1px solid rgba(77, 230, 211, 0.1);
+    
+    box-shadow: 
+        0 4px 15px rgba(77, 230, 211, 0.08),
+        0 8px 30px rgba(0, 0, 0, 0.3);
+    
+    transition: 
+        background 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        border-color 0.5s ease-in-out;
+
+    will-change: transform, box-shadow, background;
+    /* Each item can also have a subtle Z-transform for layered depth within the list */
+    transform: translateZ(0); /* Default Z-position for items */
+}
+
+.feature-item:hover {
+    transform: translateY(-10px) scale(1.02) translateZ(20px); /* Lift, scale, and bring forward on hover */
+    background: var(--item-bg-hover-intensity);
+    border-color: rgba(77, 230, 211, 0.4);
+    
+    box-shadow: 
+        0 0 30px rgba(77, 230, 211, 0.4),
+        0 0 60px rgba(77, 230, 211, 0.2),
+        0 20px 50px rgba(0, 0, 0, 0.7);
+}
+
+.feature-icon {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    display: grid;
+    place-items: center;
+    background-color: var(--accent-color);
+    border-radius: 12px;
+    border: 2px solid var(--primary-highlight);
+
+    box-shadow: 0 0 10px rgba(77, 230, 211, 0.2);
+
+    transition: 
+        background-color 0.3s ease-in-out, 
+        border-color 0.3s ease-in-out,
+        box-shadow 0.3s ease-in-out,
+        transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.feature-item:hover .feature-icon {
+    background-color: rgba(77, 230, 211, 0.15);
+    border-color: var(--primary-highlight);
+    box-shadow: 0 0 20px rgba(77, 230, 211, 0.6),
+                0 0 30px rgba(77, 230, 211, 0.3);
+    transform: scale(1.1);
+}
+
+.feature-icon svg {
+    width: 28px;
+    height: 28px;
+    color: var(--primary-highlight);
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.feature-item:hover .feature-icon svg {
+    color: var(--primary-highlight);
+    transform: scale(1.15);
+}
+
+.feature-text h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.35rem;
+    color: var(--primary-highlight);
+    transition: color 0.3s ease-in-out;
+}
+
+.feature-item:hover .feature-text h3 {
+    color: var(--primary-highlight);
+}
+
+.feature-text p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    opacity: 0.9;
+    transition: opacity 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.feature-item:hover .feature-text p {
+    opacity: 1;
+    color: var(--text-color);
+}
+
+
+/* Responsive */
+@media (max-width: 992px) {
+    .about-section, .features-section {
+        flex-direction: column;
+        text-align: center;
+    }
+    .about-section .image-content, .features-section .image-content {
+        max-width: 100%;
+    }
+    .feature-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    /* Adjust perspective for smaller screens if needed, or remove to avoid distortions */
+    .features-section {
+        perspective: none; /* Remove perspective on smaller screens */
+        transform-style: flat;
+    }
+    .features-section .image-content,
+    .features-section .features-list,
+    .feature-item {
+        transform: none !important; /* Remove 3D transforms */
+    }
+}
+
+
+.who-we-are-section {
+    position: relative;
+    padding: 4rem 0;
+    overflow: hidden;
+    visibility: hidden; 
+}
+.who-we-are-section.is-visible {
+    visibility: visible;
+}
+
+.curtain {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50.1%; 
+    background-color: var(--primary-bg-color);
+    z-index: 10;
+    transition: transform 1s cubic-bezier(0.86, 0, 0.07, 1);
+}
+.curtain-left { left: 0; }
+.curtain-right { right: 0; }
+.who-we-are-section.is-visible .curtain-left { transform: translateX(-100%); }
+.who-we-are-section.is-visible .curtain-right { transform: translateX(100%); }
+
+.slider-wrapper { position: relative; }
+.slider-container { overflow: hidden; cursor: grab; }
+.slider-track { display: flex; transition: transform 0.5s ease-in-out; }
+.slide-card {
+    flex-shrink: 0;
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+    /* No direct styles needed here for glass effect, focus on .card-inner */
+}
+
+.card-inner {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px) saturate(180%); /* Enhanced blur for liquid glass */
+    -webkit-backdrop-filter: blur(15px) saturate(180%); /* For Safari */
+    
+    border: 1px solid rgba(77, 230, 211, 0.1); /* Subtle transparent highlight border */
+    border-radius: var(--border-radius); /* Applied for curvy look */
+    
+    padding: 2.5rem;
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    /* Initial subtle box-shadow for depth and faint glow */
+    box-shadow: 
+        0 4px 15px rgba(77, 230, 211, 0.08), /* Subtle highlight glow */
+        0 8px 30px rgba(0, 0, 0, 0.3); /* Deeper shadow for lift */
+
+    /* Advanced transitions for all animated properties */
+    transition: 
+        background 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), /* Smooth fill */
+        box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), /* Glow intensity */
+        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), /* Subtle lift on hover */
+        border-color 0.5s ease-in-out; /* Border animation */
+        
+    will-change: background, box-shadow, transform; /* Optimize for animation */
+}
+
+.card-inner:hover {
+    background: var(--card-bg-hover-intensity); /* Slightly less transparent background on hover */
+    
+    /* More pronounced glow effect on hover */
+    box-shadow: 
+        0 0 30px rgba(77, 230, 211, 0.4), /* Primary glow, wider */
+        0 0 60px rgba(77, 230, 211, 0.2), /* Secondary, larger halo glow */
+        0 20px 50px rgba(0, 0, 0, 0.7); /* Stronger shadow for significant lift */
+    
+    transform: translateY(-10px) scale(1.01); /* Lift the card slightly and a small scale */
+    border-color: rgba(77, 230, 211, 0.4); /* Make border more prominent */
+}
+
+.card-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--accent-color); /* Base background for the icon circle */
+    border: 2px solid var(--primary-highlight); /* Highlight border */
+    
+    /* Subtle glow for the icon circle */
+    box-shadow: 0 0 10px rgba(77, 230, 211, 0.2);
+
+    /* Transitions for icon changes */
+    transition: 
+        background 0.3s ease-in-out, 
+        border-color 0.3s ease-in-out,
+        box-shadow 0.3s ease-in-out,
+        transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card-inner:hover .card-icon {
+    background: rgba(77, 230, 211, 0.15); /* Make icon background slightly more transparent */
+    border-color: var(--primary-highlight); /* Keep highlight border */
+    box-shadow: 0 0 20px rgba(77, 230, 211, 0.6), /* Stronger glow on icon */
+                0 0 30px rgba(77, 230, 211, 0.3);
+    transform: scale(1.05); /* Slightly enlarge icon */
+}
+
+.card-icon svg { 
+    width: 32px; 
+    height: 32px; 
+    color: var(--primary-highlight); /* Icon color */
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.card-inner:hover .card-icon svg {
+    color: var(--primary-highlight); /* Keep icon color consistent, or brighten if desired */
+    transform: scale(1.1); /* Slightly enlarge the SVG icon itself */
+}
+
+.card-inner h3 { 
+    font-size: 1.5rem; 
+    color: var(--primary-highlight); /* Heading color */
+    margin: 0 0 1rem 0; 
+    transition: color 0.3s ease-in-out;
+}
+
+.card-inner:hover h3 {
+    color: var(--primary-highlight); /* Keep heading color consistent, or brighten */
+}
+
+.card-inner p { 
+    font-size: 0.95rem; 
+    line-height: 1.6; 
+    opacity: 0.9; 
+    margin: 0; 
+    color: var(--text-color); /* Paragraph text color */
+    transition: opacity 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.card-inner:hover p {
+    opacity: 1; /* Make paragraph text fully opaque on hover */
+    color: var(--text-color); /* Keep paragraph text color consistent */
+}
+
+.slider-nav {
+    display: none; /* Hidden on mobile, swipe only */
+}
+
+/* Stats Counter Section */
+.stats-section {
+    padding: 4rem 0;
+}
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive grid, adjusted for better use */
+    gap: 1.5rem;
+    padding: 2rem;
+
+    /* Liquid Glass Base Styling */
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px) saturate(180%); /* Enhanced blur for liquid glass */
+    -webkit-backdrop-filter: blur(15px) saturate(180%); /* For Safari */
+    border-radius: var(--border-radius); /* Keeps it curvy as per your root */
+    
+    border: 1px solid rgba(77, 230, 211, 0.1); /* Subtle border matching highlight */
+    
+    /* Initial subtle glow and depth */
+    box-shadow: 
+        0 4px 15px rgba(77, 230, 211, 0.08), /* Soft inner highlight glow */
+        0 8px 30px rgba(0, 0, 0, 0.3); /* Base shadow for lift */
+    
+    /* Comprehensive Transitions for the container */
+    transition: 
+        background 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), /* Fade fill */
+        box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), /* Glow intensity */
+        border-color 0.5s ease-in-out; /* Border animation */
+    
+    will-change: background, box-shadow, border-color; /* Optimize for animation */
+}
+
+.stats-container:hover {
+    background: var(--item-bg-hover-intensity); /* Slightly less transparent on hover */
+    border-color: rgba(77, 230, 211, 0.4); /* Border becomes more prominent */
+    
+    /* Enhanced Glow on Hover for the container */
+    box-shadow: 
+        0 0 30px rgba(77, 230, 211, 0.4), /* Primary glow */
+        0 0 60px rgba(77, 230, 211, 0.2), /* Secondary halo glow */
+        0 20px 50px rgba(0, 0, 0, 0.7); /* Stronger overall shadow */
+}
+
+.stat-item { 
+    text-align: center; 
+    color: var(--text-color); /* Ensure text color is from root */
+    
+    /* Transition for individual stat items on hover */
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.stat-item:hover {
+    transform: translateY(-5px) scale(1.02); /* Subtle lift and scale on hover */
+}
+
+.stat-item .counter {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary-highlight);
+    /* Transition for counter text */
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.stat-item:hover .counter {
+    color: var(--primary-highlight); /* Keep highlight or brighten */
+    transform: translateY(-3px); /* Subtle counter lift */
+}
+
+.stat-item p { 
+    margin: 0.5rem 0 0 0; 
+    font-size: 0.9rem; 
+    opacity: 0.8; 
+    text-transform: uppercase; 
+    color: var(--text-color); /* Ensure text color is from root */
+    /* Transition for paragraph text */
+    transition: opacity 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.stat-item:hover p {
+    opacity: 1; /* Make fully opaque on hover */
+    color: var(--text-color); /* Keep consistent */
+}
+
+/*  Choose Us Section */
+.choose-us-section {
+    padding: 4rem 0;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+.choose-us-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.choose-us-item {
+    background: var(--glass-bg);
+    border: 1px solid rgba(77, 230, 211, 0.1); /* Subtle highlight border */
+    backdrop-filter: blur(15px) saturate(180%); /* Enhanced blur */
+    -webkit-backdrop-filter: blur(15px) saturate(180%); /* Safari support */
+    padding: 2rem;
+    border-radius: var(--border-radius); /* Keeps it curvy */
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+
+    /* Initial subtle glow and depth */
+    box-shadow: 
+        0 4px 15px rgba(77, 230, 211, 0.08), /* Soft inner highlight glow */
+        0 8px 30px rgba(0, 0, 0, 0.3); /* Base shadow for lift */
+
+    /* Comprehensive Transitions */
+    transition: 
+        background 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        border-color 0.5s ease-in-out;
+    will-change: transform, box-shadow, background;
+}
+
+.choose-us-item:hover {
+    background: var(--item-bg-hover-intensity); /* Slightly less transparent */
+    transform: translateY(-10px) scale(1.01); /* Lift and slight scale */
+    border-color: rgba(77, 230, 211, 0.4); /* Border becomes more prominent */
+
+    /* Enhanced Glow on Hover */
+    box-shadow: 
+        0 0 30px rgba(77, 230, 211, 0.4), /* Primary glow */
+        0 0 60px rgba(77, 230, 211, 0.2), /* Secondary halo glow */
+        0 20px 50px rgba(0, 0, 0, 0.7); /* Stronger overall shadow */
+}
+
+.choose-us-icon {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background-color: var(--accent-color);
+    border: 2px solid var(--primary-highlight); /* Highlight border */
+
+    /* Subtle initial glow for the icon */
+    box-shadow: 0 0 10px rgba(77, 230, 211, 0.2);
+
+    /* Transitions for icon elements */
+    transition: 
+        background-color 0.3s ease-in-out, 
+        border-color 0.3s ease-in-out,
+        box-shadow 0.3s ease-in-out,
+        transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.choose-us-item:hover .choose-us-icon {
+    background-color: rgba(77, 230, 211, 0.15); /* Make icon background slightly transparent */
+    border-color: var(--primary-highlight);
+    box-shadow: 0 0 20px rgba(77, 230, 211, 0.6), /* Stronger glow on icon */
+                0 0 30px rgba(77, 230, 211, 0.3);
+    transform: scale(1.2); /* Slightly enlarge icon */
+}
+
+.choose-us-icon svg { 
+    width: 32px; /* Slightly larger icon */
+    height: 32px; /* Slightly larger icon */
+    color: var(--primary-highlight); 
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.choose-us-item:hover .choose-us-icon svg {
+    color: var(--primary-highlight);
+    transform: scale(1.15); /* Slightly enlarge the SVG icon itself */
+}
+
+.choose-us-text h3 { 
+    margin: 0 0 0.5rem 0; 
+    font-size: 1.4rem; 
+    color: var(--primary-highlight); 
+    transition: color 0.3s ease-in-out;
+}
+
+.choose-us-item:hover .choose-us-text h3 {
+    color: var(--primary-highlight);
+}
+
+.choose-us-text p { 
+    margin: 0; 
+    line-height: 1.6; 
+    opacity: 0.9; 
+    color: var(--text-color);
+    transition: opacity 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.choose-us-item:hover .choose-us-text p {
+    opacity: 1;
+    color: var(--text-color);
+}
+
+/* Styles for .choose-us-image */
+.choose-us-image {
+    flex: 1;
+    max-width: 45%;
+    position: relative;
+    /* Add a subtle 3D tilt perspective for the container to enhance the effect */
+    perspective: 1000px; 
+}
+
+.choose-us-image img {
+    width: 100%;
+    border-radius: var(--border-radius);
+    position: relative;
+    z-index: 2;
+    border: 1px solid rgba(77, 230, 211, 0.2); /* Glassy border for the image */
+    
+    /* Enhanced subtle glow and depth for the image */
+    box-shadow: 
+        0 0 20px rgba(77, 230, 211, 0.15), /* Subtle highlight glow around image */
+        0 15px 50px rgba(0, 0, 0, 0.5); /* Deeper, softer general shadow */
+    
+    /* Transitions for image and pseudo-element */
+    transition: 
+        transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+        box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        border-color 0.4s ease-in-out;
+    will-change: transform, box-shadow, border-color;
+}
+
+.choose-us-image img:hover {
+    transform: translateY(-10px) rotateY(5deg) scale(1.02); /* Lift, slight rotation, and scale */
+    border-color: rgba(77, 230, 211, 0.6); /* More prominent border glow */
+    
+    /* Stronger glow and shadow on hover */
+    box-shadow: 
+        0 0 40px rgba(77, 230, 211, 0.4), /* Brighter, wider highlight glow */
+        0 0 80px rgba(77, 230, 211, 0.2), /* Secondary halo glow */
+        0 25px 70px rgba(0, 0, 0, 0.8); /* Stronger, lifted shadow */
+}
+
+.choose-us-image::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 100%;
+    height: 100%;
+    background: var(--secondary-bg-color); /* Matches your secondary background for depth */
+    border-radius: var(--border-radius);
+    z-index: 1;
+    /* Add subtle shadow to the pseudo-element */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    
+    /* Transitions for the pseudo-element */
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.4s ease-in-out;
+    will-change: transform, background;
+}
+
+.choose-us-image:hover::before {
+    transform: translate(-5px, -5px) scale(0.98); /* Shift and slightly scale the pseudo-element on hover */
+    background: rgba(18, 51, 56, 0.8); /* Darken slightly on hover for more depth contrast */
+}
+
+
+
+/* Responsive */
+@media (min-width: 576px) {
+    .slide-card { width: 50%; }
+}
+
+@media (min-width: 768px) {
+    .stats-container { grid-template-columns: repeat(4, 1fr); }
+    .slider-nav {
+        position: absolute;
+        top: -5rem;
+        right: 0;
+        width: auto;
+        display: flex;
+        gap: 1rem;
+    }
+    .slider-btn {
+        pointer-events: all;
+        background: var(--glass-bg);
+        border: 1px solid rgba(77, 230, 211, 0.2);
+        color: var(--primary-highlight);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 1.5rem;
+    }
+    .slider-btn:hover { background-color: var(--accent-color); }
+    .slider-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+}
+
+@media (min-width: 992px) {
+    .slide-card { width: 33.333%; }
+}
+
+@media (max-width: 992px) {
+     .choose-us-section { flex-direction: column; }
+     .choose-us-image { max-width: 80%; margin-top: 2rem; }
+}
+@media (max-width: 767px) {
+    .section-title { font-size: 2.2rem; }
+    .choose-us-item { flex-direction: column; align-items: center; text-align: center; }
+}
+
+.sub-head{
+    font-size: 16px !important;
+}
+.testimonials-section {
+    padding: 4rem 0;
+    position: relative;
+    /* Removed overflow: hidden; to prevent clipping of 3D transformed elements */
+    
+    perspective: 1400px; /* Stronger perspective for a deeper 3D effect */
+    transform-style: preserve-3d; /* Allows nested 3D transforms */
+    
+    transition: 
+        box-shadow 0.6s ease-out, 
+        transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        opacity 0.6s ease-out; /* Added opacity transition for smooth reveal */
+    will-change: transform, box-shadow, opacity; /* Optimize for animation */
+    
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); /* Subtle initial shadow for the section */
+    border-radius: var(--border-radius); /* Apply general border-radius */
+    
+    opacity: 0; /* Start invisible for the smooth reveal */
+}
+
+.testimonials-section.is-visible {
+    opacity: 1; /* Fade in when is-visible class is applied */
+}
+
+/* Parallax-like effect on hover for the entire testimonials section */
+.testimonials-section:hover {
+    transform: translateY(-25px) scale(1.01) rotateX(2deg); /* Lift, slight scale, and subtle X-axis rotation */
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); /* Enhanced shadow on hover */
+}
+
+.testimonial-slider-container {
+    overflow: hidden; /* Keep this to manage the slider bounds (important for swipe behavior) */
+    position: relative; /* Establish context for absolute positioning if needed */
+    transform-style: preserve-3d; /* Crucial for cards to be 3D within the container */
+    
+    /* Slight initial Z-depth for the container within the section */
+    transform: translateZ(50px);
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Match section transition */
+    will-change: transform;
+}
+
+/* On .testimonials-section hover, the slider container moves in Z-space for parallax */
+.testimonials-section:hover .testimonial-slider-container {
+    transform: translateZ(120px) translateY(10px); /* Moves further forward and slightly down */
+}
+
+
+.testimonial-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Original slide transition */
+    transform-style: preserve-3d; /* Allows individual cards to be 3D */
+    align-items: center; /* Vertically align cards within the track */
+    justify-content: center; /* Center cards horizontally within the track */
+}
+.testimonial-track1 {
+    flex-wrap: wrap;
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Original slide transition */
+    transform-style: preserve-3d; /* Allows individual cards to be 3D */
+    align-items: center; /* Vertically align cards within the track */
+    justify-content: center; /* Center cards horizontally within the track */
+    flex-wrap: wrap;
+}
+
+.testimonial-card {
+    /* Adjust flex-basis to show 3 cards at once, with some space */
+    flex: 0 0 33.33%; /* Show 3 cards at ~33.33% each */
+    max-width: 350px; /* Max width for individual card to control size */
+    padding: 1rem;
+    box-sizing: border-box;
+    
+    opacity: 1; /* Always visible for 3D effect, opacity will be handled by classes */
+    transform: translateY(0) translateZ(0) rotateY(0deg); /* Reset base transform */
+    
+    transition: 
+        opacity 0.6s ease-out, 
+        transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Use original bouncy transition for 3D effect */
+    will-change: opacity, transform;
+    position: relative; /* Needed for z-index */
+}
+
+/* Styles for the "center" testimonial card */
+/* These classes would be applied by JavaScript based on the current active slide */
+.testimonial-card.center-card {
+    transform: translateZ(100px) scale(1.15); /* Bring center card prominently forward and enlarge more */
+    z-index: 5; /* Ensure center card is on top */
+    /* Ensure its glow is full */
+    box-shadow: 
+        0 0 40px rgba(77, 230, 211, 0.5),
+        0 0 80px rgba(77, 230, 211, 0.2),
+        0 25px 70px rgba(0, 0, 0, 0.8);
+    filter: brightness(1.1);
+}
+
+/* Styles for the "left" testimonial card (preceding the center) */
+.testimonial-card.left-card {
+    transform: translateX(-25%) rotateY(25deg) translateZ(-100px) scale(0.85); /* More aggressive left move, rotation, push back, shrink */
+    opacity: 0.6; /* More aggressive dim */
+    z-index: 2; /* Place behind center */
+    /* Dimmed glow for side cards */
+    box-shadow: 
+        0 0 15px rgba(77, 230, 211, 0.1),
+        0 8px 30px rgba(0, 0, 0, 0.4);
+    filter: blur(2px) brightness(0.8); /* Apply blur to side cards */
+}
+
+/* Styles for the "right" testimonial card (following the center) */
+.testimonial-card.right-card {
+    transform: translateX(25%) rotateY(-25deg) translateZ(-100px) scale(0.85); /* More aggressive right move, rotation, push back, shrink */
+    opacity: 0.6; /* More aggressive dim */
+    z-index: 2; /* Place behind center */
+    /* Dimmed glow for side cards */
+    box-shadow: 
+        0 0 15px rgba(77, 230, 211, 0.1),
+        0 8px 30px rgba(0, 0, 0, 0.4);
+    filter: blur(2px) brightness(0.8); /* Apply blur to side cards */
+}
+
+/* is-visible class for entry animation, if used with Intersection Observer */
+.testimonials-section.is-visible .testimonial-card {
+    opacity: 1; /* Ensure these are visible when section is visible */
+    transform: translateY(0); /* Reset vertical transform for initial scroll animation */
+}
+
+
+.testimonial-card-inner {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    
+    border: 1px solid transparent; /* Start with transparent border */
+    border-image-source: linear-gradient(to bottom left, rgba(77, 230, 211, 0.3), rgba(77, 230, 211, 0.05));
+    border-image-slice: 1;
+    
+    border-radius: 0px; /* Explicitly set to 0 for sharp, modern look */
+
+    padding: 2.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    /* Initial subtle box-shadow for depth and faint glow */
+    box-shadow: 
+        0 4px 15px rgba(77, 230, 211, 0.08),
+        0 8px 30px rgba(0, 0, 0, 0.3);
+
+    /* Advanced transition for all animated properties */
+    transition: 
+        background 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        border-image-source 0.5s ease-in-out;
+
+    will-change: background, box-shadow, transform;
+}
+
+.testimonial-card-inner:hover {
+    background: var(--item-bg-hover-intensity); /* Slightly less transparent background on hover */
+    
+    /* More pronounced glow effect on hover */
+    box-shadow: 
+        0 0 30px rgba(77, 230, 211, 0.4),
+        0 0 60px rgba(77, 230, 211, 0.2),
+        0 20px 50px rgba(0, 0, 0, 0.7);
+    
+    transform: translateY(-10px); /* Lift the card slightly */
+
+    border-image-source: linear-gradient(to bottom left, rgba(77, 230, 211, 0.8), rgba(77, 230, 211, 0.3));
+}
+
+.testimonial-card-inner p {
+    font-style: italic;
+    line-height: 1.7;
+    flex-grow: 1;
+    margin: 0 0 1.5rem 0;
+    font-size: 0.95rem;
+    color: var(--text-color);
+    transition: color 0.3s ease-in-out;
+}
+
+.testimonial-card-inner:hover p {
+    color: var(--text-color);
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: auto;
+    color: var(--text-color);
+    transition: color 0.3s ease-in-out;
+}
+
+.testimonial-card-inner:hover .testimonial-author {
+    color: var(--primary-highlight);
+}
+
+.testimonial-author img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary-highlight);
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s ease-in-out;
+}
+
+.testimonial-card-inner:hover .testimonial-author img {
+    transform: scale(1.1);
+    border-color: var(--primary-highlight);
+}
+.author-details h4 { margin: 0; color: var(--primary-highlight); font-size: 1.1rem; }
+.author-details span { font-size: 0.9rem; opacity: 0.8; }
+
+.testimonial-dots {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    background-color: rgba(77, 230, 211, 0.3);
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.dot.active { background-color: var(--primary-highlight); }
+
+/* Responsive adjustments for 3D effect */
+@media (max-width: 1200px) { /* Adjust breakpoint as needed for 2 cards */
+    .testimonial-card {
+        flex: 0 0 50%; /* Show 2 cards more prominently on tablets */
+    }
+    /* Less aggressive 3D effect on smaller screens */
+    .testimonial-card.left-card {
+        transform: translateX(-15%) rotateY(10deg) translateZ(-50px) scale(0.95);
+        opacity: 0.8;
+    }
+    .testimonial-card.right-card {
+        transform: translateX(15%) rotateY(-10deg) translateZ(-50px) scale(0.95);
+        opacity: 0.8;
+    }
+    .testimonial-card.center-card {
+        transform: translateZ(80px) scale(1.07); /* Still highlight center */
+    }
+}
+
+@media (max-width: 768px) { /* Adjust breakpoint as needed for 1 card */
+    .testimonial-card {
+        flex: 0 0 100%; /* Only show 1 card on mobile */
+        transform: translateZ(0) rotateY(0deg) scale(1); /* Reset transforms */
+        opacity: 1;
+    }
+    .testimonial-card.left-card,
+    .testimonial-card.right-card,
+    .testimonial-card.center-card {
+        transform: none !important; /* Ensure no 3D transforms on mobile */
+        opacity: 1 !important; /* Ensure all are fully visible */
+        z-index: auto !important; /* Reset z-index */
+    }
+    .testimonials-section {
+        perspective: none; /* Disable perspective on mobile */
+        transform-style: flat;
+    }
+    .testimonial-slider-container,
+    .testimonial-track {
+        transform-style: flat; /* Disable 3D transforms */
+    }
+}
+
+/* Footer */
+.site-footer {
+    padding: 4rem 2rem 2rem;
+    background-color: var(--secondary-bg-color);
+    border-top: 1px solid rgba(77, 230, 211, 0.2);
+}
+
+.footer-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 3rem;
+}
+
+.footer-column .footer-logo { display: block; margin-bottom: 1rem; }
+.footer-column .footer-logo img { height: 40px; border-radius: 10px;}
+.footer-column p { font-size: 0.9rem; line-height: 1.6; opacity: 0.8; margin: 0;}
+
+.footer-column h4 {
+    font-size: 1.2rem;
+    color: var(--primary-highlight);
+    margin: 0 0 1.5rem 0;
+    position: relative;
+}
+.footer-column h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 30px;
+    height: 2px;
+    background-color: var(--primary-highlight);
+}
+
+.footer-links { list-style: none; padding: 0; margin: 0; }
+.footer-links li { margin-bottom: 0.75rem; }
+.footer-links a { color: var(--text-color); text-decoration: none; opacity: 0.8; transition: opacity 0.3s ease; }
+.footer-links a:hover { opacity: 1; }
+
+.footer-contact-info { list-style: none; padding: 0; margin: 0; }
+.footer-contact-info li { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; }
+.footer-contact-info svg {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    margin-top: 4px;
+    color: var(--primary-highlight);
+}
+
+.social-icons { display: flex; gap: 1rem; }
+.social-icons a { color: var(--text-color); font-size: 1.2rem; opacity: 0.8; transition: opacity 0.3s ease, transform 0.3s ease; }
+.social-icons a:hover { opacity: 1; transform: translateY(-2px); }
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 3rem auto 0;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(77, 230, 211, 0.2);
+    text-align: center;
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+/* Responsive */
+@media (min-width: 576px) {
+    .testimonial-card { flex-basis: 50%; }
+    .footer-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 992px) {
+    .testimonial-card { flex-basis: 33.333%; }
+    .footer-grid { grid-template-columns: 2fr 1fr 1fr 2fr; }
+}
+
+:root {
+    --primary-bg-color: #010001;
+    --secondary-bg-color: #123338;
+    --accent-color: #14574d;
+    --text-color: #E0E1DD;
+    --primary-highlight: #4de6d3;
+    --glass-bg: rgba(18, 51, 56, 0.4);
+    --font-family: 'Poppins', sans-serif;
+    --border-radius: 20px;
+    --card-bg-base: var(--glass-bg);
+    --card-bg-hover: rgba(18, 51, 56, 0.6);
+    --text-light: var(--text-color);
+}
+
+
+.space{
+    margin: 50px;
+}
+
+
+
+.cards-container {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjusted minmax */
+    gap: 2.5rem; /* Adjusted gap */
+}
+
+
+
+.contact-container p { text-align: center; max-width: 600px; margin: -2rem auto 3rem; color: #aaa; }
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 700px;
+    margin: 0 auto;
+    gap: 1.5rem;
+}
+.contact-form input, .contact-form textarea {
+    background-color: var(--secondary-bg-color);
+    border: 1px solid var(--accent-color);
+    padding: 1rem;
+    border-radius: 15px;
+    color: var(--text-color);
+    font-family: var(--font-family);
+}
+
+.animate-in {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.animate-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+@media (max-width: 1024px) {
+    .desktop-nav { display: none; }
+    .burger-menu { display: block; }
+    .hero-section { flex-direction: column; text-align: center; }
+    /* MODIFIED: Hero section ratio for mobile */
+    .content-left, .content-right { width: 100%; }
+    .content-right { height: 50vh; }
+    .hero-section p { margin-left: auto; margin-right: auto; }
+    .about-us-content { flex-direction: column; }
+    .about-us-image, .about-us-text { width: 100%; }
+}
+@media (max-width: 768px) {
+    header { padding: 0.8rem 1.5rem; top: 10px; }
+    .hero-section h1, .about-us-text h3, .about-us-container h2, .programs-container h2, .contact-container h2 { font-size: 2.2rem; }
+    .cards-container {
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+    }
+}
+.program-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border-radius: var(--border-radius-sharp); /* Applied for a sharper look */
+    overflow: hidden;
+    border-radius: 7.5px;
+    border: 1px solid rgba(77, 230, 211, 0.1); /* Subtle border for glass effect */
+    box-shadow: 
+        0 4px 15px rgba(77, 230, 211, 0.05), /* Initial subtle highlight glow */
+        0 8px 30px rgba(0, 0, 0, 0.3); /* Base shadow for depth */
+
+    color: var(--text-light);
+    
+    display: flex;
+    flex-direction: column;
+    
+    /* Comprehensive transitions for all animated properties */
+    transition: 
+        background 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), /* Smooth fill */
+        transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), /* 3D transform */
+        box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), /* Glow intensity */
+        border-color 0.5s ease-in-out, /* Border animation */
+        filter 0.5s ease-in-out; /* For subtle brightness/blur effect */
+    
+    will-change: transform, box-shadow, background, filter; /* Optimize for animation */
+    perspective: 1000px; /* Establishes 3D perspective for child transforms */
+}
+
+.program-card:hover {
+    /* 3D Transform and lift */
+    transform: translateY(-15px) scale(1.02) rotateY(5deg); /* Lift, slight scale, and Y-axis rotation for 3D */
+    background: var(--card-bg-hover); /* Slightly less transparent */
+    border-color: rgba(77, 230, 211, 0.6); /* Border becomes more prominent and glowing */
+    
+    /* Enhanced Glow Blur Animation */
+    box-shadow: 
+        0 0 40px rgba(77, 230, 211, 0.5), /* Stronger, wider primary glow */
+        0 0 80px rgba(77, 230, 211, 0.2), /* Secondary, larger halo glow */
+        0 25px 70px rgba(0, 0, 0, 0.8); /* Stronger, lifted overall shadow */
+    filter: brightness(1.1); /* Subtle brightness increase for glow effect */
+}
+
+.program-card-image img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-top-left-radius: var(--border-radius-sharp); /* Match card radius for top corners */
+    border-top-right-radius: var(--border-radius-sharp); /* Match card radius for top corners */
+    
+    /* Image specific transitions */
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+}
+
+.program-card:hover .program-card-image img {
+    transform: scale(1.05); /* Slight zoom on image hover */
+}
+
+.program-card-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.program-card-content h3 {
+    font-size: 1.35rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    color: var(--primary-highlight); /* Highlight color for heading */
+    transition: color 0.3s ease-in-out;
+}
+
+.program-card:hover .program-card-content h3 {
+    color: var(--primary-highlight); /* Keep color consistent or subtly adjust */
+}
+
+.program-card-content .rating {
+    color: var(--primary-highlight); /* Changed from yellow to primary-highlight */
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease, color 0.3s ease-in-out; /* Added color transition */
+}
+
+.program-card:hover .program-card-content .rating {
+    transform: translateX(5px); /* Subtle shift for rating */
+    color: var(--primary-highlight); /* Ensure it stays highlighted */
+}
+
+.program-card-content p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-light); /* Light text for readability */
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+    transition: color 0.3s ease-in-out;
+}
+
+.program-card:hover .program-card-content p {
+    color: var(--text-light); /* Keep color consistent */
+}
+.btn-learn-more {
+    display: inline-block;
+    background-color: transparent; /* Start transparent for glassy look */
+    color: var(--primary-highlight); /* Text color from theme highlight */
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--primary-highlight); /* Border matching highlight */
+    border-radius: var(--border-radius-sharp); /* Use sharp border-radius for consistency */
+    text-decoration: none;
+    font-weight: 600;
+    align-self: flex-start; /* Align to the start of the flex container */
+    cursor: pointer; /* Indicate interactivity */
+    border-radius: 5px;
+    /* Initial subtle glow and shadows */
+    box-shadow: 
+        0 0 5px rgba(77, 230, 211, 0.1), /* Very faint glow */
+        0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle depth shadow */
+
+    /* Comprehensive transitions for all animated properties */
+    transition: 
+        background-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        border-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        transform 0.3s ease-out; /* Simpler ease for transform for quick pop */
+    will-change: background-color, color, border-color, box-shadow, transform;
+}
+
+.btn-learn-more:hover {
+    background-color: var(--primary-highlight); /* Fills with highlight color on hover */
+    color: var(--primary-bg-color); /* Text becomes dark on filled background */
+    border-color: var(--primary-highlight); /* Border remains solid highlight */
+    
+    /* Stronger glow and subtle lift on hover */
+    box-shadow: 
+        0 0 20px rgba(77, 230, 211, 0.7), /* Bright, strong glow */
+        0 0 30px rgba(77, 230, 211, 0.4), /* Wider halo glow */
+        0 8px 20px rgba(0, 0, 0, 0.4); /* Stronger depth shadow */
+    transform: translateY(-3px); /* Subtle lift effect */
+}
+.page-section-1 {
+            width: 100%;
+            padding: 60px 0;
+        }
+
+        .about-us-container-1 {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .section-title-1 {
+             text-align: center;
+             font-size: 2.5rem;
+             font-weight: 700;
+             margin-bottom: 4rem;
+             text-transform: uppercase;
+        }
+
+        /* Component 1: Mission & Vision */
+        .mission-vision-section-1 {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 6rem;
+            padding: 2rem; /* Add some padding to the section */
+            position: relative; /* For 3D context */
+            perspective: 1200px; /* Define perspective for 3D children */
+            transform-style: preserve-3d; /* Allows nested 3D transforms */
+            
+            /* Subtle initial shadow and transition for the entire section */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-radius: var(--border-radius);
+            transition: box-shadow 0.5s ease-out, transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform, box-shadow;
+        }
+        
+        .mission-vision-section-1:hover {
+            transform: translateY(-10px) scale(1.005); /* Slight lift on hover */
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); /* Enhanced shadow */
+        }
+        
+        .mission-vision-content-1 {
+            flex: 1.5;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            /* Apply a Z-depth to the content block for parallax */
+            transform: translateZ(50px);
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+        }
+        
+        .mission-vision-section-1:hover .mission-vision-content-1 {
+            transform: translateY(15px) translateZ(80px); /* Moves down and further forward on section hover */
+        }
+        
+        
+        .section-title-1 { /* Changed from section-title-1 */
+            font-size: 2.2em; /* Slightly larger for prominence */
+            margin: 0px;
+            text-align: left;
+            /* Consistent gradient text effect */
+            font-weight: 800; /* Bolder font weight */
+            text-shadow: 0 0 5px rgba(77, 230, 211, 0.3); /* Subtle text glow */
+        }
+        
+        .mission-vision-item-1 {
+            background: var(--glass-bg); /* Use global glass background variable */
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            
+            border: 1px solid rgba(77, 230, 211, 0.15); /* Use glass border directly */
+            border-radius: var(--border-radius); /* Use global border-radius variable */
+            padding: 2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+        
+            /* Initial subtle glow and depth for the item */
+            box-shadow: 
+                0 4px 15px rgba(77, 230, 211, 0.08),
+                0 8px 30px rgba(0, 0, 0, 0.3);
+            
+            /* Comprehensive transitions */
+            transition: 
+                background 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                border-color 0.5s ease-in-out;
+            will-change: transform, box-shadow, background;
+            
+            /* Add subtle 3D lift to individual items */
+            transform: translateZ(0); 
+        }
+        
+        .mission-vision-item-1:hover {
+            background: var(--item-bg-hover-intensity); /* Use global hover intensity */
+            transform: translateY(-10px) scale(1.01) translateZ(20px); /* Lift, scale, and bring forward on hover */
+            border-color: rgba(77, 230, 211, 0.4); /* Border becomes more prominent */
+            
+            /* Enhanced Glow on Hover */
+            box-shadow: 
+                0 0 30px rgba(77, 230, 211, 0.4),
+                0 0 60px rgba(77, 230, 211, 0.2),
+                0 20px 50px rgba(0, 0, 0, 0.7);
+        }
+        
+        .mission-vision-icon-1 {
+            color: var(--primary-highlight); /* Use global primary highlight */
+            background-color: rgba(77, 230, 211, 0.1); /* Consistent with other icons */
+            border-radius: 50%;
+            padding: 12px; /* Slightly larger padding for icon circle */
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+        
+            border: 2px solid var(--primary-highlight); /* Highlight border */
+            box-shadow: 0 0 10px rgba(77, 230, 211, 0.2); /* Subtle initial glow */
+            transition: 
+                background-color 0.3s ease-in-out, 
+                border-color 0.3s ease-in-out,
+                box-shadow 0.3s ease-in-out,
+                transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .mission-vision-item-1:hover .mission-vision-icon-1 {
+            background-color: rgba(77, 230, 211, 0.15); /* More transparent on hover */
+            border-color: var(--primary-highlight);
+            box-shadow: 0 0 20px rgba(77, 230, 211, 0.6),
+                        0 0 30px rgba(77, 230, 211, 0.3);
+            transform: scale(1.1); /* Slightly enlarge icon */
+        }
+        
+        .mission-vision-icon-1 svg { 
+            width: 32px; /* Slightly larger SVG icon */
+            height: 32px; /* Slightly larger SVG icon */
+            color: var(--primary-highlight);
+            transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        
+        .mission-vision-item-1:hover .mission-vision-icon-1 svg {
+            color: var(--primary-highlight);
+            transform: scale(1.15); /* Enlarge SVG icon itself */
+        }
+        
+        .mission-vision-item-1 h3 { 
+            font-size: 1.5rem; 
+            color: var(--primary-highlight); /* Use global highlight color */
+            margin-bottom: 0.5rem; 
+            transition: color 0.3s ease-in-out;
+        }
+        
+        .mission-vision-item-1:hover h3 {
+            color: var(--primary-highlight); /* Maintain highlight color or brighten */
+        }
+        
+        .mission-vision-item-1 p { 
+            font-size: 0.95rem; /* Slightly larger for readability */
+            color: var(--text-color); /* Use global text color */
+            line-height: 1.7;
+            opacity: 0.9;
+            transition: opacity 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+        
+        .mission-vision-item-1:hover p {
+            opacity: 1; /* Fully opaque on hover */
+            color: var(--text-color);
+        }
+        
+        .mission-vision-image-1 { 
+            flex: 1; 
+            text-align: center;
+            position: relative; /* For pseudo-elements or layering */
+            /* Apply Z-depth to the image block for parallax */
+            transform: translateZ(0px); /* Initially further back */
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+        }
+        
+        .mission-vision-section-1:hover .mission-vision-image-1 {
+            transform: translateY(-20px) translateZ(100px) rotateY(-10deg); /* Moves up, comes forward, and rotates on section hover */
+        }
+        
+        
+        .mission-vision-image-1 img { 
+            max-width: 100%; 
+            height: auto; 
+            opacity: 0.9; /* Slightly more opaque initially */
+            border-radius: var(--border-radius); /* Rounded corners */
+            border: 1px solid rgba(77, 230, 211, 0.2); /* Subtle glassy border */
+            aspect-ratio: 1 / 1; /* Enforces square container */
+    overflow: hidden; /* Prevent overflow on zoom */
+            /* Enhanced subtle shadow and glow */
+            box-shadow: 
+                0 0 25px rgba(77, 230, 211, 0.15),
+                0 15px 50px rgba(0, 0, 0, 0.5);
+                object-fit: cover; /* Ensures image fills 1:1 space proportionally */
+            transition: 
+                transform 0.5s ease-in-out, 
+                box-shadow 0.6s ease-in-out, 
+                opacity 0.5s ease-in-out,
+                filter 0.5s ease-in-out;
+            will-change: transform, box-shadow, opacity, filter;
+        }
+        
+        .mission-vision-image-1 img:hover {
+            transform: scale(1.03) rotateY(5deg); /* Slight zoom and tilt on direct image hover */
+            opacity: 1; /* Fully opaque */
+            box-shadow: 
+                0 0 40px rgba(77, 230, 211, 0.4),
+                0 0 80px rgba(77, 230, 211, 0.2),
+                0 25px 70px rgba(0, 0, 0, 0.8);
+            filter: brightness(1.1);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .mission-vision-section-1 {
+                flex-direction: column;
+                text-align: center;
+            }
+            .mission-vision-content-1,
+            .mission-vision-image-1 {
+                flex: none; /* Remove flex sizing */
+                width: 100%; /* Full width */
+                max-width: none; /* Remove max-width constraints */
+                transform: none !important; /* Disable 3D transforms */
+            }
+            .mission-vision-item-1 {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .mission-vision-section-1 .section-title-1 {
+                text-align: center !important; /* Center title on smaller screens */
+            }
+        }
+        
+        .why-choose-us-section-1 {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 6rem;
+            padding: 4rem 0; /* Increased vertical padding */
+            
+            /* For 3D transformation of the entire section */
+            perspective: 1500px; /* Strong perspective for depth */
+            transform-style: preserve-3d; /* Allows nested 3D transforms */
+            
+            /* Initial subtle shadow and transition for the section itself */
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+            border-radius: var(--border-radius); /* Apply general border-radius */
+            
+            transition: 
+                box-shadow 0.6s ease-out, 
+                transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth transition */
+            will-change: transform, box-shadow;
+            
+            transform: translateZ(0); /* Promote to composite layer */
+        }
+        
+        /* Hover effect for the entire section (optional, for subtle parallax on container) */
+        .why-choose-us-section-1:hover {
+            transform: translateY(-10px) scale(1.005); /* Slight lift and scale */
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6); /* Enhanced shadow */
+        }
+        
+        .why-choose-us-connector-1 {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-highlight), transparent); /* Use highlight color */
+            z-index: 0; /* Keep it behind the items */
+            
+            /* Add a subtle 3D translation to the connector */
+            transform: translateY(-50%) translateZ(-50px); /* Push it back in Z-space */
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+        }
+        
+        /* On section hover, bring connector slightly forward */
+        .why-choose-us-section-1:hover .why-choose-us-connector-1 {
+            transform: translateY(-50%) translateZ(-20px); /* Bring slightly forward */
+        }
+        
+        
+        .why-choose-us-grid-1 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            position: relative; /* For item positioning */
+            
+            transform-style: preserve-3d; /* Allows 3D transform on items */
+            transform: translateZ(0); /* Promote to composite layer */
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+        }
+        
+        /* On section hover, the grid as a whole might react */
+        .why-choose-us-section-1:hover .why-choose-us-grid-1 {
+            transform: translateY(15px) translateZ(50px); /* Grid moves down and forward */
+        }
+        
+        
+        .why-choose-us-item-1 {
+            background: var(--glass-bg); /* Liquid glass background */
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            
+            border: 1px solid rgba(77, 230, 211, 0.15); /* Subtle glassy border */
+            border-radius: var(--border-radius); /* Apply consistent border-radius */
+            padding: 2rem;
+            text-align: center;
+            position: relative; /* For the node positioning */
+            
+            /* Initial subtle glow and depth */
+            box-shadow: 
+                0 4px 15px rgba(77, 230, 211, 0.08), /* Soft inner highlight glow */
+                0 8px 30px rgba(0, 0, 0, 0.3); /* Deeper shadow for lift */
+            
+            /* Comprehensive transitions for all animated properties */
+            transition: 
+                background 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), /* Smooth fill */
+                transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), /* Lift/scale */
+                box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), /* Glow intensity */
+                border-color 0.5s ease-in-out; /* Border animation */
+            will-change: transform, box-shadow, background, border-color;
+            
+            /* Promote to composite layer for smoother 3D transitions */
+            transform: translateZ(0); 
+        }
+        
+        .why-choose-us-item-1:hover { 
+            transform: translateY(-15px) scale(1.03) translateZ(40px) rotateY(5deg); /* More pronounced lift, scale, Z-depth, and slight rotation */
+            background: var(--item-bg-hover-intensity); /* Slightly less transparent background */
+            border-color: rgba(77, 230, 211, 0.4); /* Border becomes more prominent */
+            
+            /* Enhanced Glow on Hover */
+            box-shadow: 
+                0 0 35px rgba(77, 230, 211, 0.5), /* Stronger primary glow */
+                0 0 70px rgba(77, 230, 211, 0.2), /* Secondary halo glow */
+                0 25px 60px rgba(0, 0, 0, 0.7); /* Stronger overall shadow */
+        }
+        
+        .why-choose-us-item-1::before { /* Timeline Node */
+            content: '';
+            position: absolute;
+            top: -20px; /* Position above the item */
+            left: 50%;
+            transform: translateX(-50%) translateZ(60px); /* Push node forward */
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary-bg-color); /* Use global variable */
+            border: 3px solid var(--primary-highlight); /* Highlight border */
+            border-radius: 50%;
+            z-index: 1; /* Ensure node is above connector */
+            
+            /* Node glow and transition */
+            box-shadow: 0 0 15px rgba(77, 230, 211, 0.3);
+            transition: 
+                transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                background-color 0.3s ease-in-out,
+                border-color 0.3s ease-in-out;
+            will-change: transform, box-shadow, background-color, border-color;
+        }
+        
+        .why-choose-us-item-1:hover::before {
+            transform: translateX(-50%) translateZ(80px) scale(1.1); /* Node comes further forward and grows */
+            background-color: var(--primary-highlight); /* Node background changes to highlight */
+            border-color: #fff; /* White border on hover */
+            box-shadow: 
+                0 0 25px rgba(77, 230, 211, 0.8), /* Stronger glow on node */
+                0 0 40px rgba(77, 230, 211, 0.4);
+        }
+        
+        .why-choose-us-item-1 h3 { 
+            font-size: 1.25rem; 
+            color: var(--text-light); /* Use light text color for headings */
+            margin: 1rem 0 0.5rem 0; 
+            text-shadow: 0 0 3px rgba(77, 230, 211, 0.2); /* Subtle text glow */
+            transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+        }
+        
+        .why-choose-us-item-1:hover h3 {
+            color: var(--primary-highlight); /* Highlight heading on hover */
+            text-shadow: 0 0 8px rgba(77, 230, 211, 0.6); /* More pronounced glow */
+        }
+        
+        .why-choose-us-item-1 p { 
+            font-size: 0.9rem; 
+            color: var(--text-color); /* Use global text color */
+            line-height: 1.7; 
+            opacity: 0.9; 
+            transition: opacity 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+        
+        .why-choose-us-item-1:hover p {
+            opacity: 1; /* Make text fully opaque on hover */
+            color: var(--text-color);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .why-choose-us-grid-1 {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+                gap: 1.5rem;
+            }
+            .why-choose-us-section-1 {
+                transform: none !important; /* Disable 3D transforms */
+                perspective: none;
+                transform-style: flat;
+            }
+            .why-choose-us-connector-1 {
+                display: none; /* Hide connector on smaller screens as layout changes */
+            }
+            .why-choose-us-item-1 {
+                transform: none !important; /* Disable 3D transforms */
+            }
+            .why-choose-us-item-1::before {
+                position: static; /* Adjust node position */
+                transform: none !important; /* Disable 3D transforms */
+                margin: 0 auto 1rem; /* Center node above text */
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .why-choose-us-grid-1 {
+                grid-template-columns: 1fr; /* Single column on mobile */
+            }
+        }
+        .roadmap-section-1 {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 6rem;
+            padding: 4rem 0; /* Consistent vertical padding */
+            position: relative;
+            
+            perspective: 1600px; /* Strong perspective for deep 3D effect */
+            transform-style: preserve-3d; /* Allows nested 3D transforms */
+            
+            /* Initial subtle section shadow and overall transition */
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+            border-radius: var(--border-radius);
+            transition: box-shadow 0.6s ease-out, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform, box-shadow;
+            transform: translateZ(0); /* Promote to composite layer */
+        }
+        
+        /* Hover effect for the entire roadmap section to initiate parallax */
+        .roadmap-section-1:hover {
+            transform: translateY(-15px) scale(1.005); /* Slight lift and scale */
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6); /* Enhanced shadow */
+        }
+        
+        .roadmap-content-1 { 
+            flex: 1; 
+            /* Initial Z-depth for the content block */
+            transform: translateZ(60px);
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+        }
+        
+        /* On roadmap-section hover, content moves slightly forward and down */
+        .roadmap-section-1:hover .roadmap-content-1 {
+            transform: translateY(15px) translateZ(100px) rotateY(-5deg); /* Move down, forward, and slight rotation */
+        }
+        
+        .roadmap-text-1 h3 { 
+            font-size: 2.2rem; /* Larger heading */
+            color: var(--primary-highlight); 
+            margin-bottom: 1rem; 
+            text-shadow: 0 0 5px rgba(77, 230, 211, 0.3); /* Subtle text glow */
+        }
+        .roadmap-text-1 p { 
+            font-size: 1rem; 
+            color: var(--text-color); /* Consistent text color */
+            line-height: 1.7; 
+            margin-bottom: 2rem; 
+            opacity: 0.9;
+        }
+        
+        .roadmap-timeline-1 {
+            flex: 1.2;
+            position: relative;
+            padding-left: 0; /* Removed padding for the line */
+            padding-bottom: 0; /* Removed padding for the line */
+            
+            border-left: none; /* Removed the vertical line */
+            
+            /* Initial Z-depth for the timeline block */
+            transform: translateZ(0px); /* Slightly further back initially */
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+            transform-style: preserve-3d; /* Crucial for nested 3D transforms */
+        }
+        
+        /* Circle at the end of the timeline line - removed */
+        .roadmap-timeline-1::after {
+            display: none; /* Hide the circle */
+        }
+        
+        
+        /* On roadmap-section hover, timeline moves slightly back and rotates */
+        .roadmap-section-1:hover .roadmap-timeline-1 {
+            transform: translateY(-10px) translateZ(-50px) rotateY(5deg); /* Move up, back, and slight rotation */
+        }
+        
+        
+        /* Timeline Item */
+        .roadmap-item-1 {
+            position: relative;
+            padding: 1rem 0 2.5rem 0; /* Adjusted padding as line is removed */
+            text-align: center;
+            background: var(--glass-bg); /* Liquid glass background for item */
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            
+            border: 1px solid rgba(77, 230, 211, 0.15); /* Subtle glassy border */
+            border-radius: var(--border-radius); /* Rounded corners for items */
+            
+            /* Initial subtle glow and depth */
+            box-shadow: 
+                0 4px 15px rgba(77, 230, 211, 0.08),
+                0 8px 30px rgba(0, 0, 0, 0.3);
+            
+            transition: 
+                background 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                border-color 0.5s ease-in-out;
+            will-change: transform, box-shadow, background;
+            
+            /* Subtle 3D transform for individual items within the timeline */
+            transform: translateZ(0); 
+            margin-bottom: 2rem; /* Space between items */
+        }
+        
+
+        .roadmap-item-1:hover { 
+            transform: translateY(-10px) scale(1.01) translateZ(20px); /* Lift, scale, and bring forward on hover */
+            background: var(--item-bg-hover-intensity);
+            border-color: rgba(77, 230, 211, 0.4);
+            
+            /* Enhanced Glow on Hover */
+            box-shadow: 
+                0 0 30px rgba(77, 230, 211, 0.4),
+                0 0 60px rgba(77, 230, 211, 0.2),
+                0 20px 50px rgba(0, 0, 0, 0.7);
+        }
+        
+        /* Timeline Marker (::before pseudo-element) */
+        .roadmap-item-1::before {
+            content: attr(data-step);
+            position: absolute;
+            left: 1rem; /* Repositioned to the left edge of the item */
+            top: 1rem; /* Aligned with top of item */
+            transform: translateZ(40px); /* Bring marker forward for 3D */
+            width: 45px; /* Slightly larger marker */
+            height: 45px;
+            background-color: var(--primary-bg-color); /* Darker background for contrast */
+            border: 3px solid var(--primary-highlight); /* Highlight border */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem; /* Larger number */
+            color: var(--text-color); /* Text white by default */
+            z-index: 1; /* Ensure marker is above the line */
+            
+            /* Marker glow and transition */
+            box-shadow: 0 0 15px rgba(77, 230, 211, 0.3);
+            transition: 
+                transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                background-color 0.3s ease-in-out,
+                border-color 0.3s ease-in-out,
+                color 0.3s ease-in-out;
+            will-change: transform, box-shadow, background-color, border-color, color;
+        }
+        
+        .roadmap-item-1:hover::before {
+            transform: translateZ(60px) scale(1.1); /* Marker comes further forward and grows */
+            background-color: var(--primary-highlight); /* Background changes to highlight */
+            border-color: #fff; /* White border on hover */
+            box-shadow: 
+                0 0 30px rgba(77, 230, 211, 0.7), /* Stronger glow on marker */
+                0 0 50px rgba(77, 230, 211, 0.4);
+            color: var(--primary-bg-color); /* Number color changes to match dark background */
+        }
+        
+        .roadmap-item-1 h4 { 
+            font-size: 1.3rem; /* Slightly larger heading */
+            color: var(--text-color); /* Text white by default */
+            margin: 0 0 0.5rem 0; 
+            text-shadow: 0 0 3px rgba(77, 230, 211, 0.2); /* Subtle text glow */
+            transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+        }
+        
+        .roadmap-item-1:hover h4 {
+            color: var(--primary-highlight); /* Blue glow on hover */
+            text-shadow: 0 0 8px var(--primary-highlight); /* More pronounced glow */
+        }
+        
+        .roadmap-item-1 p { 
+            font-size: 0.9rem; 
+            color: var(--text-color); /* Text white by default */
+            line-height: 1.6;
+            margin: 0;
+            opacity: 0.9;
+            transition: opacity 0.3s ease-in-out, color 0.3s ease-in-out, text-shadow 0.3s ease-in-out; /* Added text-shadow transition */
+        }
+        
+        .roadmap-item-1:hover p {
+            opacity: 1; /* Make text fully opaque on hover */
+            color: var(--text-color); /* Maintain white color */
+            text-shadow: 0 0 5px var(--primary-highlight); /* Blue glow on hover */
+        }
+        
+        /* Override for the specific section title within roadmap */
+        .roadmap-timeline-1 .section-title-1 {
+            margin-bottom: 2rem; /* Adjusted margin to prevent overlap with first item */
+            text-align: left;
+            font-size: 2.2em; /* Consistent with other section titles */
+            background: linear-gradient(to right, #00FFFF, #008080, #4682B4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            text-shadow: 0 0 5px rgba(77, 230, 211, 0.3);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .roadmap-section-1 {
+                flex-direction: column; /* Stack content and timeline vertically */
+                text-align: center;
+                padding: 2rem 1rem; /* Adjust padding for smaller screens */
+            }
+            .roadmap-content-1,
+            .roadmap-timeline-1 {
+                flex: none; /* Remove flex sizing */
+                width: 100%; /* Full width */
+                transform: none !important; /* Disable 3D transforms for responsiveness */
+                padding-left: 0; /* Remove left padding from timeline */
+                border-left: none; /* Removed vertical line */
+                box-shadow: none; /* Removed line glow */
+            }
+            .roadmap-timeline-1::after { /* Hide the circle at the end of the line on small screens */
+                display: none;
+            }
+            .roadmap-timeline-1 .section-title-1 {
+                text-align: center !important; /* Center timeline title */
+            }
+            .roadmap-item-1 {
+                padding: 1.5rem; /* Adjust item padding */
+                text-align: left; /* Align text left */
+                margin-bottom: 1.5rem; /* Space between items */
+            }
+            .roadmap-item-1::before {
+                position: static; /* Position marker statically */
+                transform: none !important; /* Disable 3D transforms for marker */
+                margin: 0 auto 1rem auto; /* Center marker above item content */
+            }
+            .roadmap-item-1 h4, .roadmap-item-1 p {
+                text-align: center; /* Center text within item if needed */
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .roadmap-section-1 {
+                margin-bottom: 4rem;
+                padding: 1.5rem 0.5rem;
+            }
+            .roadmap-text-1 h3 { font-size: 1.8rem; }
+            .roadmap-text-1 p { font-size: 0.9rem; }
+            .roadmap-timeline-1 .section-title-1 {
+                font-size: 1.8em;
+            }
+            .roadmap-item-1 {
+                padding: 1rem;
+                margin-bottom: 1rem;
+            }
+            .roadmap-item-1::before {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+                margin-bottom: 0.8rem;
+            }
+            .roadmap-item-1 h4 { font-size: 1.1rem; }
+            .roadmap-item-1 p { font-size: 0.85rem; }
+        }
+        
+        .recognitions-grid-1 {
+            display: flex; /* Changed from grid to flex */
+            flex-wrap: wrap; /* Allow items to wrap to the next line */
+            justify-content: center; /* Center items horizontally */
+            align-items: flex-start; /* Align items to the start of the cross-axis */
+            gap: 2.5rem; /* Slightly increased gap for visual breathing room */
+            padding: 1rem 0; /* Consistent padding */
+            position: relative; /* For basic positioning */
+            
+            /* Subtle initial section shadow and overall transition */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-radius: 5px; /* Reduced border-radius for a sharper look */
+            transition: box-shadow 0.6s ease-out, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform, box-shadow;
+        }
+        
+        /* Hover effect for the entire grid, now without 3D/parallax */
+        .recognitions-grid-1:hover {
+            transform: translateY(-5px) scale(1.002); /* Slight lift and very minor scale, no rotation */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); /* Slightly enhanced shadow */
+        }
+        
+        /* Individual Recognition Card */
+        .recognition-card-1 {
+            background: var(--glass-bg); /* Liquid glass background */
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            
+            border: 1px solid var(--glass-border); /* Consistent glassy border */
+            border-radius: 5px; /* Reduced border-radius for a sharper look */
+            padding: 1.5rem;
+            text-align: center;
+            
+            /* Set a specific width for the card to control image size implicitly */
+            flex-basis: 280px; /* A base width for flex items, allowing them to grow/shrink */
+            max-width: calc(33.33% - 2.5rem); /* Max width to fit 3 in a row with gap */
+            flex-grow: 1; /* Allow cards to grow if space is available */
+            
+            position: relative; /* For z-index and basic positioning */
+            
+            /* Initial subtle glow and depth for the card */
+            box-shadow: 
+                0 4px 15px rgba(77, 230, 211, 0.08), /* Soft highlight glow */
+                0 8px 30px rgba(0, 0, 0, 0.3); /* Deeper shadow for lift */
+            
+            /* Comprehensive transitions for all animated properties */
+            transition: 
+                background 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                border-color 0.5s ease-in-out;
+            will-change: transform, box-shadow, background, border-color;
+        }
+        
+        /* Hover effects for the individual recognition card */
+        .recognition-card-1:hover {
+            background: var(--item-bg-hover-intensity); /* Slightly less transparent background on hover */
+            transform: translateY(-8px) scale(1.02); /* Lift and slight scale, no 3D or rotation */
+            border-color: rgba(77, 230, 211, 0.4); /* Border becomes more prominent */
+            
+            /* Enhanced Glow on Hover (kept as requested) */
+            box-shadow: 
+                0 0 35px rgba(77, 230, 211, 0.5), /* Stronger primary glow */
+                0 0 70px rgba(77, 230, 211, 0.2), /* Secondary halo glow */
+                0 25px 60px rgba(0, 0, 0, 0.7); /* Stronger overall shadow */
+        }
+        
+        /* Image within the Recognition Card */
+        .recognition-card-1 img {
+            width: 100%; /* Image fills the width of its parent card */
+            height: auto; /* Maintain aspect ratio */
+            aspect-ratio: 1 / 1; /* Enforce square aspect ratio */
+            object-fit: contain; /* Fit image within square without cropping */
+            border-radius: 25px; /* Reduced border-radius for sharper look */
+            margin-bottom: 1rem;
+            
+            /* Using a subtle transparent background for the image area */
+            background-color: rgba(77, 230, 211, 0.05); 
+            display: block; /* Ensures proper alignment and sizing */
+            margin-left: auto; /* Center the image within the card */
+            margin-right: auto; /* Center the image within the card */
+        
+            /* Enhanced subtle shadow and initial glow for images (kept as requested) */
+            box-shadow: 
+                0 0 25px rgba(77, 230, 211, 0.2), /* Brighter highlight glow */
+                0 10px 30px rgba(0, 0, 0, 0.4); /* Deeper shadow */
+            
+            /* Transitions for image effects, now without 3D transform */
+            transition: 
+                transform 0.5s ease-in-out, 
+                box-shadow 0.6s ease-in-out, 
+                filter 0.5s ease-in-out,
+                background-color 0.3s ease-in-out; /* Add transition for bg color */
+            will-change: transform, box-shadow, filter, background-color;
+        }
+        
+        /* Hover effects for the image within the recognition card, now without 3D transform or grow */
+        .recognition-card-1:hover img {
+            transform: scale(1.05); /* Slight scale, no 3D or rotation */
+            /* More pronounced glow on hover for images (kept as requested) */
+            filter: brightness(1.3); /* Make it pop more with brightness */
+            background-color: rgba(77, 230, 211, 0.1); /* Slightly more opaque background on image hover */
+        }
+        
+        /* Heading within the Recognition Card */
+        .recognition-card-1 h4 { 
+            font-size: 1.1rem; 
+            color: var(--text-color); /* Use global text color */
+            transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out; /* Add text-shadow to transition */
+        }
+        
+        /* Hover effect for heading within the recognition card */
+        .recognition-card-1:hover h4 { 
+            color: var(--primary-highlight); /* Highlight text on hover */
+            text-shadow: 0 0 8px var(--primary-highlight); /* Add blue glow to text */
+        }
+        
+        
+        /* Generic Animation Classes (kept as-is as they are likely tied to JS) */
+        .animate-in-1 {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .animate-in-1.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive Design (simplified as 3D transforms are removed from base) */
+        @media (max-width: 992px) {
+            .recognitions-grid-1 {
+                /* With flex-basis, this might not be strictly necessary but can help control overall width */
+                max-width: 600px; /* Example: Limit overall grid width on tablets */
+                margin: 0 auto; /* Center the grid */
+            }
+            .recognition-card-1 {
+                flex-basis: calc(50% - 1.25rem); /* 2 columns on tablets (gap is 2.5rem, so half of it) */
+                max-width: calc(50% - 1.25rem); /* Ensure it doesn't exceed 50% width */
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .recognitions-grid-1 {
+                max-width: none; /* Remove max-width on mobile to allow full width */
+                padding: 1rem; /* Add horizontal padding for mobile */
+            }
+            .recognition-card-1 {
+                flex-basis: 100%; /* Single column on mobile */
+                max-width: 100%; /* Ensure it takes full width */
+            }
+        }
+/* --- Program Card Styles --- */
+.program-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border-radius: var(--border-radius-sharp); /* Use the defined sharp radius */
+    overflow: hidden;
+    
+    border: 1px solid rgba(77, 230, 211, 0.1);
+    box-shadow: 
+        0 4px 15px rgba(77, 230, 211, 0.05),
+        0 8px 30px rgba(0, 0, 0, 0.3);
+
+    color: var(--text-light);
+    display: flex;
+    flex-direction: column;
+    
+    transition: 
+        background 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        border-color 0.5s ease-in-out,
+        filter 0.1s ease-in-out,
+        opacity 0.5s ease-in-out; /* Important for dimming */
+    
+    will-change: transform, box-shadow, background, filter, opacity;
+    perspective: 1000px; /* Establishes 3D perspective */
+    position: relative;
+    z-index: 1; /* Default z-index for all cards */
+    cursor: pointer; /* Indicates interactivity */
+    transform: translateZ(0); /* Promote to its own composite layer */
+}
+
+/* State for dimmed cards */
+.cards-container.card-focused .program-card:not(.focused) {
+    opacity: 0.2; /* Slightly more aggressive dimming */
+    background: rgba(18, 51, 56, 0.8); /* Make background more opaque for blur visibility */
+    filter: blur(8px) brightness(0.7); /* Increased blur for prominence */
+    transform: translateY(0) scale(0.98); /* Slightly shrink non-focused cards */
+    box-shadow: none; /* Remove shadow to de-emphasize */
+    border-color: rgba(77, 230, 211, 0.05); /* Less prominent border */
+    pointer-events: none; /* Make non-focused cards unclickable */
+}
+
+/* State for the focused card */
+.program-card.focused {
+    /* Apply the desired hover effects for the focused state */
+    transform: translateY(-15px) scale(1.02) rotateY(5deg);
+    background: var(--card-bg-hover);
+    border-color: rgba(77, 230, 211, 0.6);
+    
+    box-shadow: 
+        0 0 40px rgba(77, 230, 211, 0.5),
+        0 0 80px rgba(77, 230, 211, 0.2),
+        0 25px 70px rgba(0, 0, 0, 0.8);
+    filter: brightness(1.1); /* Ensure no blur and increased brightness */
+    opacity: 1; /* Ensure fully opaque */
+    z-index: 10; /* Bring focused card to front */
+    pointer-events: auto; /* Ensure focused card is clickable */
+}
+
+/* Styles for the image within the card */
+.program-card-image img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-top-left-radius: var(--border-radius-sharp);
+    border-top-right-radius: var(--border-radius-sharp);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+}
+
+/* Image zoom effect on focused card */
+.program-card.focused .program-card-image img {
+    transform: scale(1.05);
+}
+
+/* Styles for the content area of the card */
+.program-card-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Styles for the heading within the card content */
+.program-card-content h3 {
+    font-size: 1.35rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    color: var(--primary-highlight);
+    transition: color 0.3s ease-in-out;
+}
+
+/* Heading color change on focused card */
+.program-card.focused .program-card-content h3 {
+    color: var(--primary-highlight);
+}
+
+/* Styles for the rating section */
+.program-card-content .rating {
+    color: var(--primary-highlight); /* Consistent with theme */
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease, color 0.3s ease-in-out;
+}
+
+/* Rating shift on focused card */
+.program-card.focused .program-card-content .rating {
+    transform: translateX(5px);
+    color: var(--primary-highlight);
+}
+
+/* Styles for the paragraph text */
+.program-card-content p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+    transition: color 0.3s ease-in-out;
+}
+
+/* Paragraph color change on focused card */
+.program-card.focused .program-card-content p {
+    color: var(--text-light);
+}
+
+/* Styles for the .btn-learn-more button */
+.btn-learn-more {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--primary-highlight);
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--primary-highlight);
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    align-self: flex-start;
+    cursor: pointer;
+
+    box-shadow: 
+        0 0 5px rgba(77, 230, 211, 0.1),
+        0 2px 5px rgba(0, 0, 0, 0.2);
+
+    transition: 
+        background-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        border-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        transform 0.3s ease-out;
+    will-change: background-color, color, border-color, box-shadow, transform;
+}
+
+/* Button hover effects (also applies to focused button) */
+.btn-learn-more:hover,
+.program-card.focused .btn-learn-more { /* Apply hover style when card is focused too */
+    background-color: var(--primary-highlight);
+    color: var(--primary-bg-color);
+    border-color: var(--primary-highlight);
+    
+    box-shadow: 
+        0 0 20px rgba(77, 230, 211, 0.7),
+        0 0 30px rgba(77, 230, 211, 0.4),
+        0 8px 20px rgba(0, 0, 0, 0.4);
+    transform: translateY(-3px);
+}
+
+
+
+
+/*SPECIAL SECTION STYLES*/
+
+.special-section{
+    display: none;
+}
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem; /* Adjusted for larger spacing */
+    padding: 0 1rem; /* Add horizontal padding */
+    width: 100%; /* Ensure it takes full width to allow content to center within */
+    box-sizing: border-box; /* Include padding in the width calculation */
+}
+
+/* Title Chip */
+.title-chip {
+    margin-top: 7.5vh;
+    display: inline-block;
+    padding: 0.6rem 1.5rem; /* Increased padding */
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border: 1px solid rgba(77, 230, 211, 0.2);
+    border-radius: var(--border-radius); /* Use global border-radius for curvy */
+    color: var(--primary-highlight);
+    font-size: 0.9rem; /* Slightly larger font */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px; /* Increased letter spacing */
+    margin-bottom: 1.5rem; /* More space below chip */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Softer shadow */
+    transition: all 0.4s ease-in-out;
+}
+
+.title-chip:hover {
+    transform: translateY(-5px); /* More pronounced lift */
+    box-shadow: 0 8px 25px rgba(77, 230, 211, 0.3); /* Enhanced glow on hover */
+    background: rgba(18, 51, 56, 0.6); /* Slightly darker glass on hover */
+}
+
+/* Section Title (H2) */
+.section-title.interns-challenge-title {
+    font-size: 2.8rem; /* Adjusted for larger, impactful title */
+    font-weight: 800; /* Extra bold */
+    color: var(--text-color); /* Default text color, will be overridden by gradient */
+    margin-bottom: 1rem;
+    line-height: 1.2; /* Tighter line height */
+    
+    /* Gradient text effect */
+    background: linear-gradient(to right, #00FFFF, #008080, #4682B4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 8px rgba(77, 230, 211, 0.5); /* Stronger text glow */
+    transition: all 0.5s ease-in-out;
+}
+
+.section-title.interns-challenge-title:hover {
+    filter: brightness(1.3); /* Even brighter on hover */
+    text-shadow: 0 0 15px var(--primary-highlight); /* More intense glow */
+}
+
+/* Section Subtitle (P tag) */
+.section-subtitle {
+    max-width: 55rem; /* Increased max-width for wider paragraph */
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.15rem; /* Larger font size */
+    color: rgba(255, 255, 255, 0.8); /* Slightly brighter gray for readability */
+    line-height: 1.8; /* Increased line height for better readability */
+    padding: 0 1rem; /* Consistent padding */
+    transition: color 0.3s ease-in-out;
+}
+
+.section-subtitle:hover {
+    color: var(--text-color); /* Fully white on hover */
+}
+
+/* Rewards Grid */
+.rewards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Flexible columns, better base min-width */
+    gap: 2.5rem; /* Increased gap */
+    padding: 0 1rem; /* Consistent padding */
+    max-width: 90%; /* Limit overall width */
+    margin: 0 auto; /* Center the grid */
+    width: 100%; /* Ensure it takes full width to align properly */
+    box-sizing: border-box; /* Include padding in the width calculation */
+}
+
+/* Reward Card */
+.reward-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border: 1px solid rgba(77, 230, 211, 0.15); /* Subtle glassy border */
+    border-radius: var(--border-radius); /* Curvy look */
+    padding: 2.5rem; /* Increased padding */
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* Important for the fill effect */
+    z-index: 1; /* Ensures content is above pseudo-elements */
+
+    min-height: 180px; /* Increased min-height for more presence */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    /* Initial subtle box-shadow for depth and faint glow */
+    box-shadow: 
+        0 6px 20px rgba(77, 230, 211, 0.1), /* Softer highlight glow */
+        0 12px 40px rgba(0, 0, 0, 0.4); /* Deeper shadow */
+
+    /* Transition for card itself (transform, shadow, border) */
+    transition: 
+        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        border-color 0.5s ease-in-out;
+    will-change: transform, box-shadow, border-color;
+}
+
+/* Fill effect on hover */
+.reward-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--accent-gradient-start), var(--accent-gradient-end)); /* Blue fill */
+    z-index: -1; /* Behind the content */
+    transform: translateY(100%); /* Start off-screen at the bottom */
+    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Bouncy transition for fill */
+    border-radius: var(--border-radius); /* Match card border-radius */
+    filter: brightness(0.8); /* Slightly dim the fill for better text contrast */
+}
+
+.reward-card:hover::before {
+    transform: translateY(0); /* Fill up on hover */
+    filter: brightness(1); /* Full brightness on hover */
+}
+
+/* Hover effects for the card */
+.reward-card:hover {
+    transform: translateY(-15px) scale(1.03); /* More pronounced lift and enlarge */
+    border-color: var(--primary-highlight); /* Highlight border on hover */
+    
+    /* More pronounced glow effect on hover */
+    box-shadow: 
+        0 0 40px rgba(77, 230, 211, 0.5), /* Primary glow, wider */
+        0 0 80px rgba(77, 230, 211, 0.3), /* Secondary, larger halo glow */
+        0 25px 70px rgba(0, 0, 0, 0.8); /* Stronger shadow for significant lift */
+}
+
+/* Reward Card Title (H3) */
+.reward-card-title {
+    font-size: 1.6rem; /* Larger font size for impact */
+    font-weight: 700;
+    color: var(--text-color); /* Default text color */
+    position: relative; /* For z-index if needed for text over fill */
+    z-index: 2; /* Ensure text is above the fill */
+    transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+    line-height: 1.4; /* Adjusted line height */
+}
+
+/* Text color change to blue on hover */
+.reward-card:hover .reward-card-title {
+    color: var(--primary-highlight); /* Changed to blue highlight color */
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Darker shadow for contrast */
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .section-title.interns-challenge-title {
+        font-size: 2.2rem;
+    }
+    .section-subtitle {
+        font-size: 1rem;
+    }
+    .rewards-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+    .reward-card {
+        padding: 2rem;
+        min-height: 160px;
+    }
+    .reward-card-title {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-header {
+        margin-bottom: 3rem;
+    }
+    .section-title.interns-challenge-title {
+        font-size: 1.8rem;
+    }
+    .title-chip {
+        font-size: 0.8rem;
+        padding: 0.5rem 1rem;
+    }
+    .rewards-grid {
+        grid-template-columns: 1fr; /* Stack cards on mobile */
+        gap: 1.5rem;
+        max-width: 90%; /* Keep max-width for single column */
+        margin: 0 auto;
+    }
+    .reward-card {
+        padding: 1.5rem;
+        min-height: 140px;
+    }
+    .reward-card-title {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title.interns-challenge-title {
+        font-size: 1.5rem;
+    }
+    .section-subtitle {
+        font-size: 0.9rem;
+    }
+    .reward-card {
+        padding: 1.2rem;
+        min-height: 120px;
+    }
+    .reward-card-title {
+        font-size: 1rem;
+    }
+}
+
+
+
+
+
+
+
+  /* FAQ Accordion Styling */
+/* FAQ Container - Replaces max-w-4xl mx-auto */
+.faq-container {
+    max-width: 768px; /* Equivalent to max-w-3xl for content width */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1rem; /* Add some horizontal padding */
+}
+
+/* FAQ Section Header Container */
+.faq-header-container {
+    text-align: center;
+    margin-bottom: 3rem; /* Equivalent to mb-12 */
+  
+}
+
+/* FAQ Section Title - Replaces text-3xl sm:text-4xl font-bold text-white */
+.faq-section-title {
+    font-size: 1.875rem; /* 30px, equivalent to text-3xl */
+    font-weight: 700; /* font-bold */
+    color: var(--text-color); /* text-white */
+    margin-bottom: 1rem; /* mb-4 */
+    
+    /* Gradient text effect */
+    background: linear-gradient(to right, #00FFFF, #008080, #4682B4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 5px rgba(77, 230, 211, 0.3);
+    will-change: filter;
+    transition: all 0.6s ease-in-out;
+}
+
+/* Hover effect for section title */
+.faq-section-title:hover {
+    filter: brightness(1.2);
+    text-shadow: 0 0 10px var(--primary-highlight);
+}
+
+/* FAQ List - Replaces space-y-4 */
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Equivalent to space-y-4 for vertical spacing */
+}
+
+/* Individual FAQ Item - Combines faq-item2 and glass-card2 styling */
+.faq-item {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border: 1px solid rgba(77, 230, 211, 0.15); /* Subtle glassy border */
+    border-radius: var(--border-radius-sharp); /* Sharp corners */
+    padding: 1rem; /* Equivalent to p-4 */
+    position: relative;
+    overflow: hidden; /* Important for the max-height transition */
+    
+    /* Initial subtle glow and depth for the card */
+    box-shadow: 
+        0 4px 15px rgba(77, 230, 211, 0.08), /* Soft highlight glow */
+        0 8px 30px rgba(0, 0, 0, 0.3); /* Deeper shadow for lift */
+    
+    /* Transition for card itself */
+    transition: 
+        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        border-color 0.5s ease-in-out,
+        background 0.5s ease-in-out; /* Added background for hover fill */
+    will-change: transform, box-shadow, border-color, background;
+}
+
+/* Hover effects for the FAQ item */
+.faq-item:hover {
+    transform: translateY(-5px) scale(1.005); /* Slight lift and scale */
+    border-color: rgba(77, 230, 211, 0.4); /* Highlight border on hover */
+    background: var(--item-bg-hover-intensity); /* Slightly less transparent background on hover */
+    
+    /* More pronounced glow effect on hover */
+    box-shadow: 
+        0 0 25px rgba(77, 230, 211, 0.4), /* Primary glow */
+        0 0 50px rgba(77, 230, 211, 0.2), /* Secondary halo glow */
+        0 15px 40px rgba(0, 0, 0, 0.6); /* Stronger overall shadow */
+}
+
+/* FAQ Question Button - Replaces faq-question2 w-full flex justify-between items-center text-left text-lg font-semibold text-white */
+.faq-question {
+    width: 100%; /* w-full */
+    display: flex; /* flex */
+    justify-content: space-between; /* justify-between */
+    align-items: center; /* items-center */
+    text-align: left; /* text-left */
+    font-size: 1.125rem; /* text-lg */
+    font-weight: 600; /* font-semibold */
+    color: var(--text-color); /* text-white */
+    background: none; /* Remove default button background */
+    border: none; /* Remove default button border */
+    padding: 0; /* Remove default button padding */
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+.faq-question:hover {
+    color: var(--primary-highlight); /* Highlight text on hover */
+}
+
+/* FAQ Icons */
+.faq-question .ph-plus,
+.faq-question .ph-minus {
+    font-size: 1.5rem; /* text-2xl (approx) */
+    color: var(--text-highlight2); /* text-highlight2 */
+    margin-left: 0.5rem; /* Space from text */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, color 0.3s ease-in-out;
+    flex-shrink: 0; /* Prevent icons from shrinking */
+}
+
+/* Hide minus icon by default and position it to swap with plus */
+.faq-question .ph-minus {
+    opacity: 0;
+    transform: rotate(-90deg); /* Start rotated for a nice transition */
+    position: absolute; /* Take out of flow to prevent layout shift */
+    right: 1rem; /* Align with plus icon's likely position */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%) rotate(-90deg); /* Adjust for vertical centering */
+}
+
+/* When active, hide plus and show minus */
+.faq-item.active .faq-question .ph-plus {
+    opacity: 0;
+    transform: translateY(-50%) rotate(90deg); /* Rotate out */
+}
+
+.faq-item.active .faq-question .ph-minus {
+    opacity: 1;
+    transform: translateY(-50%) rotate(0deg); /* Rotate in */
+    position: static; /* Bring back into flow when active (important for clickable area) */
+}
+
+
+/* FAQ Answer - Initially hidden and smoothly reveal */
+.faq-answer {
+    max-height: 0; /* Start collapsed */
+    overflow: hidden; /* Hide overflow content */
+    opacity: 0; /* Start invisible */
+    font-size: 0.95rem; /* Base font size for answer */
+    color: rgba(255, 255, 255, 0.8); /* text-gray-300 equivalent */
+    line-height: 1.6;
+    padding-top: 0; /* No padding when collapsed */
+    /* Adjust transition duration and timing function for smoothness */
+    transition: max-height 0.7s ease-in-out, opacity 0.7s ease-in-out, padding-top 0.7s ease-in-out;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 200px; /* Adjust as needed, make this large enough for all content */
+    opacity: 1; /* Fade in */
+    padding-top: 1rem; /* Space between question and answer */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .faq-container {
+        padding: 0 0.8rem;
+    }
+    .faq-section-title {
+        font-size: 1.5rem; /* sm:text-4xl equivalent on smaller screens */
+        margin-bottom: 2rem;
+    }
+    .faq-item {
+        padding: 0.8rem;
+    }
+    .faq-question {
+        font-size: 1rem; /* Smaller font for question on mobile */
+    }
+    .faq-question .ph-plus,
+    .faq-question .ph-minus {
+        font-size: 1.2rem; /* Smaller icons on mobile */
+    }
+    .faq-answer {
+        font-size: 0.85rem; /* Smaller answer text on mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .faq-section-title {
+        font-size: 1.25rem; /* Further reduction for very small screens */
+    }
+    .faq-question {
+        font-size: 0.9rem;
+    }
+}
+
+
+/* Custom CSS Variables - Ensure these are defined in your global CSS */
+:root {
+    --primary-bg-color: #010001;
+    --secondary-bg-color: #123338;
+    --accent-color: #14574d;
+    --text-color: #E0E1DD;
+    --primary-highlight: #4de6d3; /* Your cyan/teal highlight */
+    --glass-bg: rgba(18, 51, 56, 0.4);
+    --font-family: 'Poppins', sans-serif;
+    --border-radius: 20px; /* Base border-radius for curvy look */
+    --item-bg-hover-intensity: rgba(18, 51, 56, 0.8); /* Stronger hover background for cards */
+    --accent-gradient-start: #00ffff; /* A bright cyan for the fill */
+    --accent-gradient-end: #4de6d3;   /* Your primary-highlight color for the fill */
+}
+
+/* Section Header for "Our Interns' Projects" */
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem; /* Consistent spacing */
+    padding: 0 1rem;
+}
+
+/* Title Chip - Reusing styles from previous component, adapted for "PROJECTS" */
+.title-chip {
+    display: inline-block;
+    padding: 0.6rem 1.5rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border: 1px solid rgba(77, 230, 211, 0.2);
+    border-radius: var(--border-radius);
+    color: var(--primary-highlight);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease-in-out;
+}
+
+.title-chip:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(77, 230, 211, 0.3);
+    background: rgba(18, 51, 56, 0.6);
+}
+
+/* Section Title - Reusing styles, specifically for "Our Interns' Projects" */
+.section-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    background: linear-gradient(to right, #00FFFF, #008080, #4682B4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 8px rgba(77, 230, 211, 0.5);
+    transition: all 0.5s ease-in-out;
+}
+
+.section-title:hover {
+    filter: brightness(1.3);
+    text-shadow: 0 0 15px var(--primary-highlight);
+}
+
+/* Project Showcase Container */
+.project-showcase {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Default to one column for mobile, expands */
+    gap: 2.5rem; /* Consistent gap */
+    padding: 0 1rem;
+    margin-bottom: 5rem; /* Equivalent to mb-20 */
+    align-items: center; /* Vertically align image and card */
+
+    /* For 3D transform on the whole showcase if desired, similar to other sections */
+    perspective: 1200px;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease-out, box-shadow 0.6s ease-out;
+}
+
+/* Specific layout for larger screens using grid-template-columns */
+@media (min-width: 1024px) { /* Equivalent to lg:grid-cols-5 */
+    .project-showcase {
+        grid-template-columns: 2fr 3fr; /* Image takes 2 parts, details take 3 parts */
+    }
+}
+
+
+/* Project Image Container */
+.project-image-container {
+    position: relative;
+    transform-style: preserve-3d; /* For 3D transforms on the image itself */
+    
+    /* Initial subtle shadow and border for the container */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    border-radius: var(--border-radius); /* Curvy corners */
+    overflow: hidden; /* Ensures image and shadow stay within bounds */
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.6s ease-out;
+    will-change: transform, box-shadow;
+    transform: translateZ(20px); /* Start slightly forward */
+}
+
+.project-image-container:hover {
+    transform: translateY(-15px) translateZ(80px) rotateX(3deg); /* Lift, bring further forward, slight X-rotation */
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6); /* Enhanced shadow */
+}
+
+/* Project Screenshot Image */
+.project-screenshot {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: var(--border-radius); /* Consistent curvy look */
+    border: 1px solid rgba(77, 230, 211, 0.2); /* Subtle glassy border */
+    
+    /* Subtle glow and depth for the image */
+    box-shadow: 
+        0 0 20px rgba(77, 230, 211, 0.15),
+        0 10px 30px rgba(0, 0, 0, 0.4);
+    
+    transition: 
+        transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        border-color 0.5s ease-in-out;
+    will-change: transform, box-shadow, border-color;
+    transform: translateZ(0); /* Promote to composite layer */
+}
+
+.project-image-container:hover .project-screenshot {
+    transform: scale(1.05) translateZ(20px); /* Slightly enlarge and bring forward on container hover */
+    box-shadow: 
+        0 0 40px rgba(77, 230, 211, 0.4),
+        0 0 80px rgba(77, 230, 211, 0.2),
+        0 25px 70px rgba(0, 0, 0, 0.8);
+    border-color: rgba(77, 230, 211, 0.6);
+}
+
+/* Project Details Card */
+.project-details-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border: 1px solid rgba(77, 230, 211, 0.15);
+    border-radius: var(--border-radius); /* Consistent curvy look */
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+
+    display: flex; /* Using flex for inner content alignment */
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* Align content to the start */
+
+    box-shadow: 
+        0 4px 15px rgba(77, 230, 211, 0.08),
+        0 8px 30px rgba(0, 0, 0, 0.3);
+
+    transition: 
+        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        border-color 0.5s ease-in-out;
+    will-change: transform, box-shadow, border-color;
+    transform: translateZ(0); /* Start at the base plane */
+}
+
+/* Fill effect on hover for the details card */
+.project-details-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--accent-gradient-start), var(--accent-gradient-end)); /* Blue fill */
+    z-index: -1;
+    transform: translateY(100%);
+    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    border-radius: var(--border-radius);
+    filter: brightness(0.8);
+}
+
+.project-details-card:hover::before {
+    transform: translateY(0);
+    filter: brightness(1);
+}
+
+/* Hover effects for the details card */
+.project-details-card:hover {
+    transform: translateY(-10px) scale(1.01) translateZ(40px); /* Lift, slightly enlarge, bring further forward */
+    border-color: var(--primary-highlight);
+    box-shadow: 
+        0 0 30px rgba(77, 230, 211, 0.4),
+        0 0 60px rgba(77, 230, 211, 0.2),
+        0 20px 50px rgba(0, 0, 0, 0.7);
+}
+
+/* Inner content for project details */
+.project-details-content {
+    display: grid; /* Changed to grid for inner layout */
+    grid-template-columns: 1fr; /* Default to single column */
+    gap: 2rem; /* Gap between text info and graphic */
+    align-items: start;
+    width: 100%;
+}
+
+@media (min-width: 768px) { /* Equivalent to md:grid-cols-2 */
+    .project-details-content {
+        grid-template-columns: 1.5fr 1fr; /* Text info takes more space than graphic */
+    }
+}
+
+/* Project Text Information */
+.project-text-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.project-title {
+    font-size: 2rem; /* Larger title for project */
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+}
+
+.project-details-card:hover .project-title {
+    color: var(--primary-highlight); /* Changed to blue on hover fill */
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.project-subtitle {
+    font-size: 1.25rem; /* Sub-heading for project */
+    font-weight: 600;
+    color: var(--primary-highlight); /* Highlight color */
+    margin-bottom: 1rem;
+    transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+}
+
+.project-details-card:hover .project-subtitle {
+    color: var(--primary-highlight); /* Changed to blue on hover fill */
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.project-info {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+}
+.project-info :hover{
+    color: var(--primary-bg-color) !important;
+}
+
+.project-details-card:hover .project-info {
+    color: var(--primary-bg-color); /* Changed to blue on hover fill */
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+.project-info-label {
+    font-weight: 700;
+    color: var(--text-color);
+    transition: color 0.3s ease-in-out;
+}
+
+.project-details-card:hover .project-info-label {
+    color: var(--primary-bg-color); /* Changed to blue on hover fill */
+}
+
+/* Project AI Graphic Image */
+.project-graphic {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: var(--border-radius); /* Consistent curvy look */
+    
+    border: 1px solid rgba(77, 230, 211, 0.1); /* Subtle border */
+    box-shadow: 0 0 15px rgba(77, 230, 211, 0.1), 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out, border-color 0.4s ease-in-out;
+    will-change: transform, box-shadow, border-color;
+}
+
+.project-details-card:hover .project-graphic {
+    transform: scale(1.05); /* Slight zoom on hover */
+    box-shadow: 0 0 30px rgba(77, 230, 211, 0.3), 0 10px 25px rgba(0, 0, 0, 0.5);
+    border-color: rgba(77, 230, 211, 0.3);
+}
+
+/* Section Footer Text */
+.section-footer-text {
+    text-align: center;
+    font-size: 1.25rem; /* Equivalent to text-xl */
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 600;
+    margin-bottom: 5rem; /* Consistent spacing */
+    padding: 0 1rem;
+    transition: color 0.3s ease-in-out;
+}
+
+.section-footer-text:hover {
+    color: var(--text-color); /* Fully white on hover */
+}
+
+.highlight-text {
+    color: var(--primary-highlight); /* Highlighting text with primary highlight */
+    font-weight: 700;
+    text-shadow: 0 0 5px rgba(77, 230, 211, 0.4);
+    transition: text-shadow 0.3s ease-in-out;
+}
+
+.section-footer-text:hover .highlight-text {
+    text-shadow: 0 0 10px var(--primary-highlight); /* Stronger glow on hover */
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) { /* Medium screens */
+    .project-showcase {
+        grid-template-columns: 1fr; /* Stack elements vertically */
+        gap: 2rem; /* Adjusted gap */
+    }
+    .project-image-container,
+    .project-details-card {
+        transform: none !important; /* Disable 3D transforms on hover */
+        box-shadow: none !important; /* Reset shadows */
+    }
+    .project-image-container:hover,
+    .project-details-card:hover {
+        transform: translateY(-8px) scale(1.005) !important; /* Subtle 2D hover */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+    }
+    .project-image-container img,
+    .project-details-card .project-graphic {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+    .project-image-container:hover img,
+    .project-details-card:hover .project-graphic {
+        transform: scale(1.02) !important; /* Subtle image zoom */
+        box-shadow: 0 0 20px rgba(77, 230, 211, 0.2) !important;
+    }
+}
+
+@media (max-width: 768px) { /* Small screens */
+    .section-title {
+        font-size: 2.2rem;
+    }
+    .project-showcase {
+        margin-bottom: 4rem;
+        gap: 1.5rem;
+    }
+    .project-details-card {
+        padding: 1.5rem;
+    }
+    .project-details-content {
+        grid-template-columns: 1fr; /* Stack inner content too */
+    }
+    .project-title {
+        font-size: 1.8rem;
+    }
+    .project-subtitle {
+        font-size: 1rem;
+    }
+    .project-info {
+        font-size: 0.85rem;
+    }
+    .section-footer-text {
+        font-size: 1.1rem;
+        margin-bottom: 4rem;
+    }
+}
+
+@media (max-width: 480px) { /* Very small screens */
+    .section-title {
+        font-size: 1.8rem;
+    }
+    .project-details-card {
+        padding: 1rem;
+    }
+    .project-title {
+        font-size: 1.5rem;
+    }
+    .project-subtitle {
+        font-size: 0.9rem;
+    }
+    .project-info {
+        font-size: 0.8rem;
+    }
+    .section-footer-text {
+        font-size: 1rem;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem; /* Consistent spacing */
+    padding: 0 1rem;
+}
+
+/* Title Chip - "BENEFITS" */
+.title-chip {
+    display: inline-block;
+    padding: 0.6rem 1.5rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border: 1px solid rgba(77, 230, 211, 0.2);
+    border-radius: var(--border-radius); /* Curvy as per theme */
+    color: var(--primary-highlight);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease-in-out;
+}
+
+.title-chip:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(77, 230, 211, 0.3);
+    background: rgba(18, 51, 56, 0.6);
+}
+
+/* Section Title - "Perks & Benefits" */
+.section-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--text-color); /* Default, overridden by gradient */
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    background: linear-gradient(to right, #00FFFF, #008080, #4682B4); /* Consistent gradient */
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 8px rgba(77, 230, 211, 0.5);
+    transition: all 0.5s ease-in-out;
+}
+
+.section-title:hover {
+    filter: brightness(1.3);
+    text-shadow: 0 0 15px var(--primary-highlight);
+}
+
+/* Benefits Showcase (Image + Top Perks) */
+.benefits-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr; /* Certificate takes 1 part, perks take 1.5 parts */
+    gap: 3rem;
+    align-items: center; /* Vertically align image and perks */
+    padding: 0 1rem;
+    margin-bottom: 5rem; /* Consistent bottom margin */
+
+    /* Add 3D perspective to the container */
+    perspective: 1200px;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease-out, box-shadow 0.6s ease-out;
+}
+
+/* Hover effect for the entire benefits showcase */
+.benefits-showcase:hover {
+    transform: translateY(-15px) scale(1.005) rotateX(2deg); /* Lift, slight scale, and subtle X-rotation */
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); /* Enhanced shadow */
+}
+
+/* Certificate Image */
+.certificate-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain; /* Ensures entire image is visible */
+    border-radius: var(--border-radius); /* Curvy corners */
+    border: 1px solid rgba(77, 230, 211, 0.2); /* Glassy border */
+    
+    /* Subtle glow and depth for the image */
+    box-shadow: 
+        0 0 20px rgba(77, 230, 211, 0.15),
+        0 10px 30px rgba(0, 0, 0, 0.4);
+    
+    /* 3D transform for image within the showcase */
+    transform: translateZ(20px); /* Start slightly forward */
+    transition: 
+        transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        border-color 0.5s ease-in-out;
+    will-change: transform, box-shadow, border-color;
+}
+
+.benefits-showcase:hover .certificate-image {
+    transform: scale(1.05) translateZ(60px) rotateY(-5deg); /* Enlarge, bring further forward, subtle Y-rotation */
+    box-shadow: 
+        0 0 40px rgba(77, 230, 211, 0.4),
+        0 0 80px rgba(77, 230, 211, 0.2),
+        0 25px 70px rgba(0, 0, 0, 0.8);
+    border-color: rgba(77, 230, 211, 0.6);
+}
+
+/* Top Perks List (next to image) */
+.top-perks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Spacing between perk items */
+    padding: 1rem; /* Padding inside the list */
+    
+    /* Add 3D transform for parallax effect */
+    transform: translateZ(0); /* Start at base plane */
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+}
+
+.benefits-showcase:hover .top-perks-list {
+    transform: translateY(10px) translateZ(40px); /* Move down and forward on showcase hover */
+}
+
+/* Individual Perk Item (for top-perks-list) */
+.perk-item {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border: 1px solid rgba(77, 230, 211, 0.15);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    
+    /* Initial subtle box-shadow */
+    box-shadow: 
+        0 4px 15px rgba(77, 230, 211, 0.08),
+        0 8px 30px rgba(0, 0, 0, 0.3);
+
+    transition: 
+        background 0.5s ease-in-out,
+        transform 0.4s ease-in-out,
+        box-shadow 0.6s ease-in-out,
+        border-color 0.5s ease-in-out;
+    will-change: transform, box-shadow, background, border-color;
+    transform: translateZ(0); /* Promote to composite layer */
+}
+
+.perk-item:hover {
+    background: var(--item-bg-hover-intensity);
+    transform: translateY(-8px) scale(1.01) translateZ(10px); /* Lift, scale, and subtle forward */
+    border-color: var(--primary-highlight);
+    box-shadow: 
+        0 0 25px rgba(77, 230, 211, 0.4),
+        0 0 50px rgba(77, 230, 211, 0.2),
+        0 15px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Perk Icon (for top-perks-list) */
+.perk-icon {
+    flex-shrink: 0;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background-color: var(--secondary-bg-color); /* Darker background for contrast */
+    border: 2px solid var(--primary-highlight);
+    box-shadow: 0 0 10px rgba(77, 230, 211, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+.perk-item:hover .perk-icon {
+    background-color: var(--primary-highlight); /* Fill with highlight color on hover */
+    box-shadow: 0 0 20px rgba(77, 230, 211, 0.6);
+    transform: scale(1.1);
+}
+
+.perk-icon i {
+    font-size: 1.8rem; /* Icon size */
+    color: var(--primary-highlight); /* Icon color */
+    transition: color 0.3s ease-in-out;
+}
+
+.perk-item:hover .perk-icon i {
+    color: var(--primary-bg-color); /* Text color changes to dark on highlight fill */
+}
+
+/* Perk Description (for top-perks-list) */
+.perk-description {
+    font-size: 1rem;
+    color: var(--text-color);
+    line-height: 1.5;
+    margin: 0;
+    opacity: 0.9;
+    transition: color 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.perk-item:hover .perk-description {
+    color: var(--primary-bg-color); /* Text color changes to dark on highlight fill */
+    opacity: 1;
+}
+
+/* Additional Perks Grid (bottom section) */
+.additional-perks-grid {
+    display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+    gap: 2rem;
+    padding: 0 1rem;
+    margin-bottom: 5rem; /* Consistent bottom margin */
+}
+
+/* Individual Perk Card (for additional-perks-grid) */
+.perk-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border: 1px solid rgba(77, 230, 211, 0.15);
+    border-radius: var(--border-radius);
+    padding: 2rem; /* More padding for these cards */
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    
+    min-height: 150px; /* Ensure a minimum height for consistent look */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* Initial subtle box-shadow */
+    box-shadow: 
+        0 4px 15px rgba(77, 230, 211, 0.08),
+        0 8px 30px rgba(0, 0, 0, 0.3);
+
+    transition: 
+        background 0.5s ease-in-out,
+        transform 0.4s ease-in-out,
+        box-shadow 0.6s ease-in-out,
+        border-color 0.5s ease-in-out;
+    will-change: transform, box-shadow, background, border-color;
+    transform: translateZ(0); /* Promote to composite layer */
+}
+
+.perk-card:hover {
+    background: var(--item-bg-hover-intensity);
+    transform: translateY(-10px) scale(1.02) translateZ(10px); /* Lift, scale, and subtle forward */
+    border-color: var(--primary-highlight);
+    box-shadow: 
+        0 0 30px rgba(77, 230, 211, 0.4),
+        0 0 60px rgba(77, 230, 211, 0.2),
+        0 20px 50px rgba(0, 0, 0, 0.7);
+}
+
+/* Perk Icon Large (for additional-perks-grid) */
+.perk-icon-large {
+    width: 70px; /* Larger icon circle */
+    height: 70px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background-color: var(--secondary-bg-color);
+    border: 2px solid var(--primary-highlight);
+    box-shadow: 0 0 10px rgba(77, 230, 211, 0.2);
+    margin-bottom: 1rem; /* Space below icon */
+    transition: all 0.3s ease-in-out;
+}
+
+.perk-card:hover .perk-icon-large {
+    background-color: var(--primary-highlight);
+    box-shadow: 0 0 25px rgba(77, 230, 211, 0.6);
+    transform: scale(1.1);
+}
+
+.perk-icon-large i {
+    font-size: 2.2rem; /* Larger icon size */
+    color: var(--primary-highlight);
+    transition: color 0.3s ease-in-out;
+}
+
+.perk-card:hover .perk-icon-large i {
+    color: var(--primary-bg-color);
+}
+
+/* Perk Description (for additional-perks-grid) - Same as .perk-description, but specifically for this context if needed */
+.perk-card .perk-description {
+    font-size: 1rem; /* Consistent font size */
+    color: var(--text-color);
+    line-height: 1.5;
+    margin: 0;
+    opacity: 0.9;
+    transition: color 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.perk-card:hover .perk-description {
+    color: var(--primary-highlight); /* Text color changes to dark on highlight fill */
+    opacity: 1;
+}
+
+/* Section Footer Text (common style) */
+.section-footer-text {
+    text-align: center;
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 600;
+    margin-bottom: 5rem;
+    padding: 0 1rem;
+    transition: color 0.3s ease-in-out;
+}
+
+.section-footer-text:hover {
+    color: var(--text-color);
+}
+
+.highlight-text {
+    color: var(--primary-highlight);
+    font-weight: 700;
+    text-shadow: 0 0 5px rgba(77, 230, 211, 0.4);
+    transition: text-shadow 0.3s ease-in-out;
+}
+
+.section-footer-text:hover .highlight-text {
+    text-shadow: 0 0 10px var(--primary-highlight);
+}
+
+
+/* Responsive Design */
+@media (max-width: 1024px) { /* Tablets and smaller laptops */
+    .benefits-showcase {
+        grid-template-columns: 1fr; /* Stack image and perks vertically */
+        gap: 2rem;
+        transform: none !important; /* Disable 3D transform on section hover */
+    }
+    .benefits-showcase:hover {
+        transform: none !important; /* Ensure it stays flat */
+        box-shadow: none !important;
+    }
+    .certificate-image,
+    .top-perks-list {
+        transform: none !important; /* Disable 3D transforms */
+    }
+    .benefits-showcase:hover .certificate-image,
+    .benefits-showcase:hover .top-perks-list {
+        transform: none !important; /* Ensure children also flatten */
+    }
+    .certificate-image {
+        max-width: 80%; /* Limit image width on smaller screens */
+        margin: 0 auto; /* Center the image */
+    }
+    .perk-item {
+        padding: 1.2rem; /* Slightly reduced padding */
+    }
+    .perk-icon {
+        width: 50px;
+        height: 50px;
+    }
+    .perk-icon i {
+        font-size: 1.6rem;
+    }
+    .additional-perks-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjust columns for tablets */
+        gap: 1.5rem;
+    }
+    .perk-card {
+        padding: 1.5rem;
+    }
+    .perk-icon-large {
+        width: 60px;
+        height: 60px;
+    }
+    .perk-icon-large i {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) { /* Mobile phones */
+    .section-title {
+        font-size: 2.2rem;
+    }
+    .benefits-showcase {
+        margin-bottom: 4rem;
+        gap: 1.5rem;
+    }
+    .top-perks-list {
+        gap: 1rem;
+        padding: 0;
+    }
+    .perk-item {
+        flex-direction: column; /* Stack icon and text */
+        align-items: center;
+        text-align: center;
+        padding: 1rem;
+    }
+    .perk-icon {
+        margin-bottom: 0.5rem;
+    }
+    .perk-description {
+        font-size: 0.9rem;
+    }
+    .additional-perks-grid {
+        grid-template-columns: 1fr; /* Single column on mobile */
+        gap: 1.2rem;
+    }
+    .perk-card {
+        padding: 1.2rem;
+    }
+    .perk-icon-large {
+        width: 50px;
+        height: 50px;
+    }
+    .perk-icon-large i {
+        font-size: 1.8rem;
+    }
+    .section-footer-text {
+        font-size: 1.1rem;
+        margin-bottom: 4rem;
+    }
+}
+
+@media (max-width: 480px) { /* Smaller mobile phones */
+    .section-title {
+        font-size: 1.8rem;
+    }
+    .title-chip {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.8rem;
+    }
+    .perk-description {
+        font-size: 0.85rem;
+    }
+    .perk-icon {
+        width: 45px;
+        height: 45px;
+    }
+    .perk-icon i {
+        font-size: 1.5rem;
+    }
+    .perk-icon-large {
+        width: 45px;
+        height: 45px;
+    }
+    .perk-icon-large i {
+        font-size: 1.5rem;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* WhatsApp Widget Container */
+.whatsapp-widget-container {
+    position: fixed;
+    bottom: 20px; /* Distance from bottom */
+    left: 20px; /* Distance from left */
+    z-index: 10000; /* Ensure it's on top of everything */
+    font-family: var(--font-family);
+}
+
+/* WhatsApp Toggle Button (The main floating icon) */
+.whatsapp-toggle-button {
+    background-color: var(--primary-highlight);
+    color: var(--primary-bg-color); /* Dark text on highlight background */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid var(--primary-highlight); /* Strong border matching color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5), 0 0 25px var(--primary-highlight); /* Strong glow */
+    transition: all 0.3s ease-in-out;
+    position: relative; /* For icon inside */
+    z-index: 10001; /* Above chatbox if overlapping */
+    outline: none; /* Remove outline on focus */
+}
+
+.whatsapp-toggle-button:hover {
+    transform: translateY(-5px) scale(1.05); /* Lift and grow */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7), 0 0 40px var(--primary-highlight); /* More pronounced glow */
+    border-color: #fff; /* White border on hover */
+}
+
+.whatsapp-toggle-button i {
+    font-size: 2.2rem; /* Size of the WhatsApp icon */
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.whatsapp-toggle-button:hover i {
+    transform: rotate(5deg); /* Subtle rotation on hover */
+    color: var(--primary-bg-color); /* Ensure color stays same or changes as needed */
+}
+
+/* WhatsApp Chatbox */
+.whatsapp-chatbox {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(77, 230, 211, 0.2);
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    width: 320px; /* Fixed width for chatbox */
+    height: 450px; /* Fixed height for chatbox */
+    position: absolute;
+    bottom: 80px; /* Position above the toggle button */
+    left: 0;
+    display: flex;
+    flex-direction: column;
+
+    /* Initial state: More hidden, ready for smooth transition */
+    transform: translateY(50px) scale(0.8) opacity(0); 
+    pointer-events: none; /* Disable interaction when hidden */
+    visibility: hidden; /* Truly hidden when not active */
+
+    /* Transition for all animated properties, including visibility */
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55), /* Bouncy transform */
+                opacity 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55),  /* Opacity fades with transform */
+                visibility 0s linear 0.4s; /* Visibility changes after transform/opacity (delay on hide) */
+    overflow: hidden; /* Ensures content stays within bounds */
+}
+
+/* Active state for chatbox (when open) */
+.whatsapp-chatbox.active {
+    transform: translateY(0) scale(1) opacity(1); /* Slide up, scale to full, become visible */
+    pointer-events: auto; /* Enable interaction when active */
+    visibility: visible; /* Make visible */
+    transition-delay: 0s; /* No delay on show */
+}
+
+/* Chatbox Header */
+.chatbox-header {
+    background-color: rgba(77, 230, 211, 0.1); /* Slightly transparent header */
+    padding: 1rem;
+    border-bottom: 1px solid rgba(77, 230, 211, 0.3);
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chatbox-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--primary-highlight);
+    font-weight: 700;
+}
+
+.chatbox-header .status-indicator {
+    font-size: 0.8rem;
+    color: var(--text-color);
+    padding: 0.3rem 0.6rem;
+    background-color: rgba(10, 150, 20, 0.8); /* Green for online */
+    border-radius: 15px;
+}
+
+/* Chatbox Messages Area */
+.chatbox-messages {
+    flex-grow: 1;
+    padding: 1rem;
+    overflow-y: auto; /* Scrollable message area */
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-height: 150px; /* Ensure a minimum height for messages to prevent layout issues */
+}
+
+/* Individual Message Bubbles */
+.chatbox-messages .message {
+    max-width: 80%;
+    padding: 0.75rem 1rem;
+    border-radius: 15px; /* Curvy bubbles */
+    line-height: 1.4;
+    font-size: 0.9rem;
+    word-wrap: break-word;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.chatbox-messages .message.incoming {
+    background-color: var(--chat-bubble-incoming);
+    color: var(--text-color);
+    align-self: flex-start;
+    border-bottom-left-radius: 5px; /* Less curvy on sender side */
+}
+
+.chatbox-messages .message.outgoing {
+    background-color: var(--chat-bubble-outgoing);
+    color: var(--text-color);
+    align-self: flex-end;
+    border-bottom-right-radius: 5px; /* Less curvy on sender side */
+}
+
+/* Chatbox Input Area */
+.chatbox-input-area {
+    display: flex;
+    padding: 1rem;
+    border-top: 1px solid rgba(77, 230, 211, 0.2);
+    background-color: rgba(18, 51, 56, 0.3); /* Slightly darker glass for input area */
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+}
+
+.chatbox-input-area input {
+    flex-grow: 1;
+    padding: 0.75rem;
+    border: 1px solid rgba(77, 230, 211, 0.3);
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.3); /* Darker input background */
+    color: var(--text-color);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.chatbox-input-area input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.chatbox-input-area input:focus {
+    border-color: var(--primary-highlight);
+    box-shadow: 0 0 8px rgba(77, 230, 211, 0.5);
+}
+
+.send-message-button {
+    background-color: var(--primary-highlight);
+    color: var(--primary-bg-color);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 0.75rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+    outline: none;
+}
+
+.send-message-button:hover {
+    background-color: #00ffff; /* Brighter highlight on hover */
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.send-message-button i {
+    font-size: 1.2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .whatsapp-widget-container {
+        bottom: 15px;
+        left: 15px;
+    }
+    .whatsapp-toggle-button {
+        width: 50px;
+        height: 50px;
+    }
+    .whatsapp-toggle-button i {
+        font-size: 1.8rem;
+    }
+    .whatsapp-chatbox {
+        width: calc(100vw - 30px); /* Full width minus padding on mobile */
+        height: 80vh; /* Make it taller on mobile */
+        bottom: 70px;
+        left: 50%;
+        transform: translateX(-50%) translateY(50px) scale(0.8) opacity(0); /* Adjust initial position for centering */
+        border-radius: var(--border-radius);
+    }
+    .whatsapp-chatbox.active {
+        transform: translateX(-50%) translateY(0) scale(1) opacity(1);
+    }
+    .chatbox-header h3 {
+        font-size: 1rem;
+    }
+    .chatbox-messages .message {
+        font-size: 0.85rem;
+    }
+    .chatbox-input-area input {
+        padding: 0.6rem;
+        font-size: 0.85rem;
+    }
+    .send-message-button {
+        width: 35px;
+        height: 35px;
+    }
+    .send-message-button i {
+        font-size: 1rem;
+    }
+}
+
+
+
+
+
+
+
+
+/* Custom CSS Variables - Ensure these are defined in your global CSS */
+:root {
+    --primary-bg-color: #010001;
+    --secondary-bg-color: #123338;
+    --accent-color: #14574d;
+    --text-color: #E0E1DD; /* General light text */
+    --primary-highlight: #4de6d3; /* Your cyan/teal highlight */
+    --glass-bg: rgba(18, 51, 56, 0.4); /* Base glass background */
+    --font-family: 'Poppins', sans-serif;
+    --border-radius: 20px; /* Base border-radius for curvy look */
+    --item-bg-hover-intensity: rgba(18, 51, 56, 0.6); /* Slightly less transparent on hover */
+}
+
+/* Login Pop-up Overlay */
+.login-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000; /* Above everything else, but below loader if present */
+
+    /* Initial hidden state with transitions */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+}
+
+.login-popup-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s; /* No delay on showing */
+}
+
+/* Login Pop-up Container */
+.login-popup-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    border: 1px solid rgba(77, 230, 211, 0.2);
+    border-radius: var(--border-radius);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7);
+    padding: 2.5rem;
+    position: relative;
+    width: 90%;
+    max-width: 450px; /* Max width for desktop */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    /* Initial hidden state with transition */
+    transform: translateY(20px) scale(0.9);
+    transition: transform 0.3s ease-in-out;
+}
+
+.login-popup-overlay.active .login-popup-container {
+    transform: translateY(0) scale(1);
+}
+
+/* Close Button */
+.close-popup-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    outline: none;
+}
+
+.close-popup-button:hover {
+    color: var(--primary-highlight);
+    transform: rotate(90deg);
+}
+
+/* Header within pop-up */
+.login-popup-header {
+    margin-bottom: 2rem;
+}
+
+.login-popup-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--text-color);
+    background: linear-gradient(to right, #00FFFF, #008080, #4682B4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 5px rgba(77, 230, 211, 0.3);
+    margin-bottom: 0.5rem;
+}
+
+.login-popup-subtitle {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+/* Form Styling */
+.login-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid rgba(77, 230, 211, 0.3);
+    border-radius: 10px; /* Slightly more rounded for inputs */
+    background-color: rgba(0, 0, 0, 0.2); /* Darker input background */
+    color: var(--text-color);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.form-group input:focus {
+    border-color: var(--primary-highlight);
+    box-shadow: 0 0 10px rgba(77, 230, 211, 0.6);
+}
+
+/* Submit Button */
+.login-submit-button {
+    background-color: var(--primary-highlight);
+    color: var(--primary-bg-color);
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+    outline: none;
+    margin-top: 1rem;
+}
+
+.login-submit-button:hover {
+    background-color: #00ffff; /* Brighter highlight on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 15px #00ffff;
+}
+
+/* Login Message (for success/error) */
+.login-message {
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+    color: var(--text-color);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+    .login-popup-container {
+        padding: 1.5rem;
+    }
+    .login-popup-title {
+        font-size: 1.8rem;
+    }
+    .login-popup-subtitle {
+        font-size: 0.9rem;
+    }
+    .form-group input {
+        padding: 0.7rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    .login-submit-button {
+        padding: 0.8rem 1rem;
+        font-size: 1rem;
+    }
+}
+
+
+
+/* Custom CSS Variables - Ensure these are defined in your global CSS */
+:root {
+    --primary-bg-color: #010001;
+    --secondary-bg-color: #123338;
+    --accent-color: #14574d;
+    --text-color: #E0E1DD; /* General light text */
+    --primary-highlight: #4de6d3; /* Your cyan/teal highlight */
+    --glass-bg: rgba(18, 51, 56, 0.4); /* Base glass background */
+    --font-family: 'Poppins', sans-serif;
+    --border-radius-sharp: 5px; /* For a sharper, minimalist look */
+    --item-bg-hover-intensity: rgba(18, 51, 56, 0.6); /* Slightly less transparent on hover */
+}
+
+/* Verify Pop-up Overlay */
+.verify-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent overlay */
+    justify-content: center; /* Ensures content is centered when display is flex */
+    align-items: center; /* Ensures content is centered when display is flex */
+    z-index: 10000; /* Above everything else */
+
+    /* Corrected initial hidden state with transitions */
+    opacity: 0;
+    visibility: hidden; /* Start truly hidden */
+    display: none; /* Ensure it's not rendered in the flow initially */
+    transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s; /* Delay visibility change on hide */
+}
+
+.verify-popup-overlay.active {
+    opacity: 1;
+    visibility: visible; /* Make visible when active */
+    display: flex; /* Make it a flex container when active */
+    transition-delay: 0s; /* No delay on showing */
+}
+
+/* Verify Pop-up Container */
+.verify-popup-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    border: 1px solid rgba(77, 230, 211, 0.2);
+    border-radius: var(--border-radius-sharp); /* Sharp corners */
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7);
+    padding: 2.5rem;
+    position: relative;
+    width: 90%;
+    max-width: 450px; /* Max width for desktop */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    /* Initial hidden state with transition */
+    transform: translateY(20px) scale(0.9);
+    transition: transform 0.3s ease-in-out;
+}
+
+.verify-popup-overlay.active .verify-popup-container {
+    transform: translateY(0) scale(1);
+}
+
+/* Close Button (reusing styles from login popup) */
+.close-popup-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    outline: none;
+}
+
+.close-popup-button:hover {
+    color: var(--primary-highlight);
+    transform: rotate(90deg);
+}
+
+/* Header within pop-up */
+.verify-popup-header {
+    margin-bottom: 2rem;
+}
+
+.verify-popup-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--text-color);
+    background: linear-gradient(to right, #00FFFF, #008080, #4682B4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 5px rgba(77, 230, 211, 0.3);
+    margin-bottom: 0.5rem;
+}
+
+.verify-popup-subtitle {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+/* Form Styling */
+.verify-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid rgba(77, 230, 211, 0.3);
+    border-radius: var(--border-radius-sharp); /* Sharp corners for inputs */
+    background-color: rgba(0, 0, 0, 0.2); /* Darker input background */
+    color: var(--text-color);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.form-group input:focus {
+    border-color: var(--primary-highlight);
+    box-shadow: 0 0 10px rgba(77, 230, 211, 0.6);
+}
+
+/* Submit Button */
+.verify-submit-button {
+    background-color: var(--primary-highlight);
+    color: var(--primary-bg-color);
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: var(--border-radius-sharp); /* Sharp corners for button */
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+    outline: none;
+    margin-top: 1rem;
+}
+
+.verify-submit-button:hover {
+    background-color: #00ffff; /* Brighter highlight on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 15px #00ffff;
+}
+
+/* Verify Message (for success/error) */
+.verify-message {
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+    color: var(--text-color);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+    .verify-popup-container {
+        padding: 1.5rem;
+    }
+    .verify-popup-title {
+        font-size: 1.8rem;
+    }
+    .verify-popup-subtitle {
+        font-size: 0.9rem;
+    }
+    .form-group input {
+        padding: 0.7rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    .verify-submit-button {
+        padding: 0.8rem 1rem;
+        font-size: 1rem;
+    }
+}
+.spe-test{
+    margin-top: 50px;
+}

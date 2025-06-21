@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inlighn Tech - Transform Your Career</title>
+    <link rel="stylesheet" href="style.css">
+      <!-- Tailwind CSS for layout -->
+      <script src="https://cdn.tailwindcss.com"></script>
+    
+      <!-- Phosphor Icons for modern icons -->
+      <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="loader">
+        <!-- Changed to loader-circle and added the text as per CSS expectation -->
+        <div class="loader-circle"><img src="Logo.png" alt="" width="100%" height="100%"></div>
+    </div>
+
+
+    <div class="container">
+        <header>
+            <div class="logo brand-name">
+                <img src="Logo.png" alt="Inlighn Tech Logo">
+                <span>INLIGHN TECH</span>
+            </div>
+            <nav class="desktop-nav">
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About Us</a></li>
+                    <li><a href="#programs" class="nav-link">Programs</a></li>
+                    <li><a href="#special" class="nav-link-mobile">Specials</a></li>
+                    <li><a href="#contact" class="nav-link">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="btn btn-primary loginPortal">Login</button>
+                <button class="btn btn-primary verifyPortal">Verify</button>
+                <div class="burger-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </header>
+
+        <nav class="mobile-nav">
+            <ul class="nav-links-mobile">
+                 <li><a href="#home" class="nav-link-mobile active">Home</a></li>
+                 <li><a href="#about" class="nav-link-mobile">About Us</a></li>
+                 <li><a href="#programs" class="nav-link-mobile">Programs</a></li>
+                 <li><a href="#special" class="nav-link-mobile">Specials</a></li>
+                 <li><a href="#contact" class="nav-link-mobile">Contact Us</a></li>
+            </ul>
+        </nav>
+
+
+        <div id="page-content">
+
+
+
+
+            <main id="home" class="page-section active">
+                <div class="hero-section">
+                    <div class="content-left">
+                        <h1 class="animate-in">Transform Your Career with <p class="brand-name">INLIGHN TECH</p></h1>
+                        <p class="animate-in">Gain real-world experience with our immersive internship programs in Cyber Security, Full Stack Development, Data Science, Data Analyst and in various tech domains. Learn today, lead tomorrow.</p>
+                        <button class="btn btn-secondary animate-in" onclick="handleNavigation('#programs')">
+                           
+                            <a href="#about" class="nav-link"> Explore Internships</a>
+                          </button>
+                          
+                                                
+                    </div>
+                    <div class="content-right">
+                        <iframe src='https://my.spline.design/reactiveorb-TcK6HSWVqMgoKE3iBhpYD8u9/' frameborder='0' width='100%' height='100%'></iframe>
+                    </div>
+                </div>
+                <hr class="break">
+                <div class="accreditations animate-in space" id="accreditations-container">
+                </div>
+                    <hr class="break">
+                <h2 class="section-title brand-name acd" >We Provide Best Internships For You</h2>
+                <section class="features-section">
+                    
+                    <div class="image-content">
+                        <img src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Team meeting around a table with a laptop">
+                    </div>
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" />
+                                </svg>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Real-World Projects</h3>
+                                <p>Gain hands-on experience with real industry projects and build a portfolio that stands out.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                   <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.228a4.5 4.5 0 00-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 001.13-1.897M16.5 7.5l-1.5-1.5m0 0l-1.5 1.5m1.5-1.5v4.5m0-4.5h4.5m-4.5 0l1.5 1.5M12 13.5l-1.5 1.5m0 0l-1.5-1.5m1.5 1.5v4.5m0-4.5h4.5m-4.5 0l1.5-1.5m-1.5-1.5l-1.5 1.5m0 0l1.5-1.5m-1.5 1.5v-4.5m0 4.5h-4.5m4.5 0l-1.5-1.5M4.5 7.5l1.5 1.5M4.5 7.5l1.5-1.5M4.5 7.5h4.5m-4.5 0V12m0 0l1.5 1.5m-1.5-1.5l-1.5 1.5" />
+                                 </svg>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Expert Mentorship</h3>
+                                <p>Learn from seasoned professionals who guide you through every step of your journey.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Certified Programs</h3>
+                                <p>Complete the programs and get certified in your field to showcase your skills.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                 </svg>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Flexible Learning</h3>
+                                <p>Do it at your own pace with online programs designed to fit your schedule.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <hr class="break">
+                <section class="who-we-are-section" id="who-we-are">
+                    <div class="curtain curtain-left"></div>
+                    <div class="curtain curtain-right"></div>
+                    <div class="slider-wrapper">
+                        <h2 class="section-title brand-name acd" >WHO WE ARE</h2>
+                        <div class="slider-container">
+                            <div class="slider-track">
+                                <!-- Slide items here -->
+                                <div class="slide-card"><div class="card-inner"><div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-1.5l-2.625 2.625a3.375 3.375 0 01-4.773-4.773l.91-1.214a1.125 1.125 0 011.586-.06l.32.32a1.125 1.125 0 010 1.586l-1.214.91a3.375 3.375 0 004.773 4.773l2.625-2.625m-8.133-4.48a1.125 1.125 0 011.586 0l1.214-.91a3.375 3.375 0 00-4.773-4.773L3.75 9.75m9-3.75l-2.625 2.625A3.375 3.375 0 019.75 9.75l-1.214-.91a1.125 1.125 0 010-1.586l.32-.32a1.125 1.125 0 011.586 0z" /></svg></div><h3>About INLIGHN TECH</h3><p>Founded with a passion for providing meaningful and immersive learning experiences, we offer internship programs that equip students and young professionals with practical skills.</p></div></div>
+                                <div class="slide-card"><div class="card-inner"><div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 1.5m-5-1.5l1-1.5m-1 1.5H5.25m7.5 0v2.25m0 0l-1 1.5m1-1.5l1 1.5m0 0l1.5-2.25m-1.5 2.25l-1.5-2.25m-6-9l1.5 2.25m-1.5-2.25l-1.5 2.25" /></svg></div><h3>Our Mission</h3><p>To empower students and young professionals by providing immersive, real-world learning experiences through tailored internship programs to succeed in the tech industry.</p></div></div>
+                                <div class="slide-card"><div class="card-inner"><div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639l4.25-6.5a1.012 1.012 0 011.602-.284l.404.284a1.012 1.012 0 01.284 1.602l-4.25 6.5a1.012 1.012 0 01-1.602.284l-.404-.284a1.012 1.012 0 01-.284-1.602zM12 21a9 9 0 100-18 9 9 0 000 18z" /></svg></div><h3>Our Vision</h3><p>We aim to equip our participants with the practical skills and confidence they need to succeed in the fast-evolving tech industry, becoming leaders of tomorrow.</p></div></div>
+                                <div class="slide-card"><div class="card-inner"><div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.745 3.745 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" /></svg></div><h3>Why Choose Us</h3><p>We bridge the gap between academic learning and industry needs, offering practical skills in Full Stack Development, Data Science, and Project Management.</p></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+        
+                <hr class="break">
+                
+                <!-- NEW "Stats Counter" SECTION -->
+                <h2 class="section-title brand-name acd" >Milestones We've Reached</h2>
+                <section class="stats-section" id="stats">
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <span class="counter" data-target="5000">0</span>+
+                            <p>Interns Enrolled</p>
+                        </div>
+                        <div class="stat-item">
+                            <span class="counter" data-target="9000">0</span>+
+                            <p>Projects Completed</p>
+                        </div>
+                        <div class="stat-item">
+                            <span class="counter" data-target="93">0</span>%
+                            <p>Satisfaction Rate</p>
+                        </div>
+                        <div class="stat-item">
+                            <span class="counter" data-target="30">0</span>+
+                            <p>Top Instructors</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <hr class="break">
+                <h2 class="section-title brand-name acd" >Why Choose Us</h2>
+                <!-- NEW " Choose Us" SECTION -->
+                <section class="choose-us-section">
+                    <div class="choose-us-content">
+
+                        <div class="choose-us-item">
+                            <div class="choose-us-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.311a13.999 13.999 0 01-3.75 0M10.5 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM13.5 12.75a3.375 3.375 0 116.75 0 3.375 3.375 0 01-6.75 0z" /></svg></div>
+                            <div class="choose-us-text">
+                                <h3>Career Support</h3>
+                                <p>Our career services include portfolio reviews, interview prep, and connections with industry professionals to help you land your dream job.</p>
+                            </div>
+                        </div>
+                        <div class="choose-us-item">
+                             <div class="choose-us-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15zM21 21l-5.197-5.197" /></svg></div>
+                            <div class="choose-us-text">
+                                <h3>Tailored Programs</h3>
+                                <p>Our courses are crafted with a focus on hands-on, practical learning in Full Stack Development, Data Science, and Project Management.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="choose-us-image">
+                        <img src="https://images.pexels.com/photos/3760067/pexels-photo-3760067.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Professional woman standing confidently">
+                    </div>
+                </section>
+                <hr class="break">
+        <!-- NEW "Testimonials" SECTION -->
+        <section class="testimonials-section" id="testimonials">
+            <div class="section-subtitle brand-name acd">TESTIMONIALS</div>
+            <h2 class="section-title brand-name acd sub-head">What Our Interns Say</h2>
+            <div class="testimonial-slider-container">
+                <div class="testimonial-track">
+                    <!-- Card 1 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-card-inner">
+                            <p>"During my Data Analytics internship at INLIGHN TECH, I learned SQL, Power BI, and Tableau. The program focused on real-world projects, which helped me understand data-driven decision-making."</p>
+                            <div class="testimonial-author">
+                                <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Mirunalini R">
+                                <div>
+                                    <h4>Mirunalini R</h4>
+                                    <span>Data Analyst Intern</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-card-inner">
+                            <p>"I completed my Data Science internship and gained hands-on experience with Python and AI Models. Working on live projects put my knowledge in a practical context. Great mentorship!"</p>
+                            <div class="testimonial-author">
+                                <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Surendra Kumar">
+                                <div>
+                                    <h4>Surendra Kumar</h4>
+                                    <span>Data Science Intern</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-card-inner">
+                            <p>"I worked on React, Node.js, and Flask, and built web applications from scratch. The hands-on exposure and expert guidance made a big difference in my confidence as a developer."</p>
+                            <div class="testimonial-author">
+                                <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Alex Johnson">
+                                <div>
+                                    <h4>Alex Johnson</h4>
+                                    <span>Full Stack Intern</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add more cards as needed -->
+                     
+                </div>
+            </div>
+            <div class="testimonial-dots"></div>
+        </section>
+            </main>
+
+            <section id="programs" class="page-section">
+                <div class="programs-container" >
+                     <h2 class=" brand-name acd">Our Programs</h2>
+                     <div class="cards-container animate-in" id="programs-cards-container">
+                        <!-- Program cards will be injected here by JavaScript -->
+                     </div>
+                </div>
+             </section>
+
+            <section id="about" class="page-section">
+                <section id="about" class="page-section-1">
+                    <div class="about-us-container-1">
+                        
+                        <!-- Vision & Mission Section -->
+                        <div class="mission-vision-section-1 animate-in-1">
+                            <div class="mission-vision-content-1">
+                                 <h2 class="section-title-1" style="text-align: left;">Save Time and Effort with </h2><h1 class="brand-name" style="margin: 0px; padding: 0px;">INLIGHN TECH</h1>
+                                <div class="mission-vision-item-1">
+                                    <div class="mission-vision-icon-1"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639l4.25-6.5a1.012 1.012 0 011.602-.284l.404.284a1.012 1.012 0 01.284 1.602l-4.25 6.5a1.012 1.012 0 01-1.602.284l-.404-.284a1.012 1.012 0 01-.284-1.602zM12 21a9 9 0 100-18 9 9 0 000 18z" /></svg></div>
+                                    <div>
+                                        <h3>Our Vision</h3>
+                                        <p>To be a leading EdTech platform that bridges the gap between academic knowledge and industry demands, shaping the next generation of tech innovators and leaders through hands-on, practical learning.</p>
+                                    </div>
+                                </div>
+                                <div class="mission-vision-item-1">
+                                    <div class="mission-vision-icon-1"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 1.5m-5-1.5l1-1.5m-1 1.5H5.25m7.5 0v2.25m0 0l-1 1.5m1-1.5l1 1.5m0 0l1.5-2.25m-1.5 2.25l-1.5-2.25m-6-9l1.5 2.25m-1.5-2.25l-1.5 2.25" /></svg></div>
+                                    <div>
+                                         <h3>Our Mission</h3>
+                                         <p>To empower students and young professionals by providing immersive, real-world learning experiences through tailored internship programs, equipping them with the skills to succeed in the tech industry.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mission-vision-image-1">
+                                 <img src="Img.jpg" alt="Abstract Tech Illustration">
+                            </div>
+                        </div>
+                        <hr class="break">
+                        <!-- Why Choose Us Section -->
+                        <div class="why-choose-us-section-1 animate-in-1">
+                            <h2 class="section-title-1 brand-name">The Best Beneficial Side of INLIGHN TECH</h2>
+                            <div class="why-choose-us-grid-1">
+                                 <div class="why-choose-us-connector-1"></div>
+                                <div class="why-choose-us-item-1">
+                                     <h3>High Quality Resources</h3>
+                                     <p>Our expertly designed resources provide hands-on learning and real-world skills with up-to-date content.</p>
+                                </div>
+                                 <div class="why-choose-us-item-1">
+                                     <h3>Expert Instructors</h3>
+                                     <p>Learn from seasoned industry professionals who bring real-world experience and insights to every lesson.</p>
+                                </div>
+                                 <div class="why-choose-us-item-1">
+                                     <h3>Internship Portal Access</h3>
+                                     <p>Get separate portal access to all course materials and updates, allowing you to learn at your own pace.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="break">
+                        <!-- Roadmap Section -->
+                        <div class="roadmap-section-1 animate-in-1">
+                            <div class="roadmap-content-1">
+                                <div class="roadmap-text-1">
+                                     <h3>We Provide Best Industry Services For You</h3>
+                                     <p>At INLIGHN TECH, we believe that the future of education lies in bridging the gap between academic learning and industry needs. Our internship programs equip students with practical skills in Cyber Security, Full Stack Development, Data Science, and Project Management.</p>
+                                </div>
+                            </div>
+                             <div class="roadmap-timeline-1">
+                                <h2 class="section-title-1" style="text-align: left;">Roadmap of Internship Journey</h2>
+                                <div class="roadmap-item-1" data-step="1">
+                                    <h4>Registration & Portal Access</h4>
+                                </div>
+                                <div class="roadmap-item-1" data-step="2">
+                                    <h4>Interview Call - Next Day</h4>
+                                </div>
+                                <div class="roadmap-item-1" data-step="3">
+                                    <h4>Offer Letter & Batch Link</h4>
+                                </div>
+                                <div class="roadmap-item-1" data-step="4">
+                                    <h4>Select Project & Submit Work</h4>
+                                </div>
+                                <div class="roadmap-item-1" data-step="5">
+                                    <h4>Experience & Completion Letter</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="break">
+                
+                        <!-- NEW "Stats Counter" SECTION -->
+                        <h2 class="section-title brand-name acd" >Milestones We've Reached</h2>
+                        <section class="stats-section" id="stats">
+                            <div class="stats-container">
+                                <div class="stat-item">
+                                    <span class="counter" data-target="5000">5000</span>+
+                                    <p>Interns Enrolled</p>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="counter" data-target="9000">9000</span>+
+                                    <p>Projects Completed</p>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="counter" data-target="93">93</span>%
+                                    <p>Satisfaction Rate</p>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="counter" data-target="30">30</span>+
+                                    <p>Top Instructors</p>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <hr class="break">
+
+                        <div class="testimonials-section1" id="" style="display: block !important;">
+                            <div class="section-subtitle brand-name acd">TESTIMONIALS</div>
+                            <h2 class="section-title brand-name acd sub-head">What Our Interns Say</h2>
+                            <div class="testimonial-slider-container">
+                                <div class="testimonial-track1">
+                                    <!-- Card 1 -->
+                                    <div class="testimonial-card">
+                                        <div class="testimonial-card-inner">
+                                            <p>"During my Data Analytics internship at INLIGHN TECH, I learned SQL, Power BI, and Tableau. The program focused on real-world projects, which helped me understand data-driven decision-making."</p>
+                                            <div class="testimonial-author">
+                                                <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Mirunalini R">
+                                                <div>
+                                                    <h4>Mirunalini R</h4>
+                                                    <span>Data Analyst Intern</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Card 2 -->
+                                    <div class="testimonial-card">
+                                        <div class="testimonial-card-inner">
+                                            <p>"I completed my Data Science internship and gained hands-on experience with Python and AI Models. Working on live projects put my knowledge in a practical context. Great mentorship!"</p>
+                                            <div class="testimonial-author">
+                                                <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Surendra Kumar">
+                                                <div>
+                                                    <h4>Surendra Kumar</h4>
+                                                    <span>Data Science Intern</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Card 3 -->
+                                    <div class="testimonial-card">
+                                        <div class="testimonial-card-inner">
+                                            <p>"I worked on React, Node.js, and Flask, and built web applications from scratch. The hands-on exposure and expert guidance made a big difference in my confidence as a developer."</p>
+                                            <div class="testimonial-author">
+                                                <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Alex Johnson">
+                                                <div>
+                                                    <h4>Alex Johnson</h4>
+                                                    <span>Full Stack Intern</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Add more cards as needed -->
+                                     
+                                </div>
+                            </div>
+                            <div class="testimonial-dots"></div>
+                        </div>
+                        <hr class="break">
+            
+                         <!-- Recognitions Section -->
+                         <div class="recognitions-section-1 animate-in-1">
+                            <h2 class="section-title brand-name acd" >Our Achivements</h2>
+                             <div class="recognitions-grid-1">
+                                 <div class="recognition-card-1">
+                                     <img src="C2.png" alt="Certificate of Incorporation">
+                                     <h4>Incorporation Certificate</h4>
+                                 </div>
+                                  <div class="recognition-card-1">
+                                     <img src="C1.jpg" alt="Startup India Recognition">
+                                     <h4>Startup India Recognition</h4>
+                                 </div>
+                             </div>
+                         </div>
+                                  
+
+                         
+                    </div>
+                </section>
+            </section>
+            
+
+            <section id="special" class="special-section">
+               <div class="spe">
+
+                <div class="container">
+                    
+
+                        <div class="testimonials-section1 spe-test" id="" style="display: block !important;">
+                            <div class="section-subtitle brand-name acd">TESTIMONIALS</div>
+                            <h2 class="section-title brand-name acd sub-head">What Our Interns Say</h2>
+                            <div class="testimonial-slider-container">
+                                <div class="testimonial-track1">
+                                    <!-- Card 1 -->
+                                    <div class="testimonial-card">
+                                        <div class="testimonial-card-inner">
+                                            <p>"During my Data Analytics internship at INLIGHN TECH, I learned SQL, Power BI, and Tableau. The program focused on real-world projects, which helped me understand data-driven decision-making."</p>
+                                            <div class="testimonial-author">
+                                                <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Mirunalini R">
+                                                <div>
+                                                    <h4>Mirunalini R</h4>
+                                                    <span>Data Analyst Intern</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Card 2 -->
+                                    <div class="testimonial-card">
+                                        <div class="testimonial-card-inner">
+                                            <p>"I completed my Data Science internship and gained hands-on experience with Python and AI Models. Working on live projects put my knowledge in a practical context. Great mentorship!"</p>
+                                            <div class="testimonial-author">
+                                                <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Surendra Kumar">
+                                                <div>
+                                                    <h4>Surendra Kumar</h4>
+                                                    <span>Data Science Intern</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Card 3 -->
+                                    <div class="testimonial-card">
+                                        <div class="testimonial-card-inner">
+                                            <p>"I worked on React, Node.js, and Flask, and built web applications from scratch. The hands-on exposure and expert guidance made a big difference in my confidence as a developer."</p>
+                                            <div class="testimonial-author">
+                                                <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Alex Johnson">
+                                                <div>
+                                                    <h4>Alex Johnson</h4>
+                                                    <span>Full Stack Intern</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Add more cards as needed -->
+                                     
+                                </div>
+                            </div>
+                            <div class="testimonial-dots"></div>
+                        </div>
+                        <hr class="break">
+                    <div class="section-header">
+                        <span class="title-chip">EPIC OPPORTUNITY ✨</span>
+                        <h2 class="section-title interns-challenge-title">Interns of the Month Challenge</h2>
+                        <p class="section-subtitle">
+                            Inlighn Tech is bringing you an EPIC opportunity with the "Interns of the Month Challenge".
+                            Every single month, we're recognizing 10 OUTSTANDING interns who have shown exceptional dedication, innovation, and top-tier performance! 🏆
+                        </p>
+                    </div>
+                    
+                    <div class="rewards-grid">
+                        <div class="reward-card">
+                            <h3 class="reward-card-title">A Stipend Reward of ₹15,000!</h3>
+                        </div>
+                        <div class="reward-card">
+                            <h3 class="reward-card-title">An Exclusive Inlighn Tech Welcome Kit & Swag Pack!</h3>
+                        </div>
+                        <div class="reward-card">
+                            <h3 class="reward-card-title">Special Recognition on Our Platform!</h3>
+                        </div>
+                    </div>
+                    <hr class="break">
+            
+                    <div class="section-header">
+                        <h2 class="section-title">Our Interns Projects</h2>
+                    </div>
+                    
+                    <div class="project-showcase">
+                         <div class="project-image-container">
+                             <img src="https://placehold.co/600x400/010001/4de6d3?text=Project+Screenshot" alt="Amazon Sales Dashboard Project" class="project-screenshot">
+                         </div>
+                         <div class="project-details-card">
+                             <div class="project-details-content">
+                                 <div class="project-text-info">
+                                     <h3 class="project-title">Project Report: Nova</h3>
+                                     <h4 class="project-subtitle">Voice-Activated AI Assistant</h4>
+                                     <p class="project-info"><strong class="project-info-label">Developed By:</strong> Athira Prasad Nair</p>
+                                     <p class="project-info"><strong class="project-info-label">Organization:</strong> Inlighn Tech</p>
+                                     <p class="project-info"><strong class="project-info-label">Email:</strong> athiranair358@gmail.com</p>
+                                     <p class="project-info"><strong class="project-info-label">Submission Date:</strong> 20-04-2025</p>
+                                 </div>
+                                 <img src="https://placehold.co/400x400/123338/4de6d3?text=AI+Graphic" alt="AI Assistant Graphic" class="project-graphic">
+                             </div>
+                         </div>
+                    </div>
+            
+                    <p class="section-footer-text">
+                        Because here at Inlighn Tech, we believe in <span class="highlight-text">REWARDING EXCELLENCE!</span> ✨
+                    </p>
+            <hr class="break">
+                    <div class="section-header">
+
+                        <h2 class="section-title">Perks & Benefits</h2>
+                    </div>
+            
+                    <div class="benefits-showcase">
+                        <img src="Certification.jpg" alt="ISO 9001:2015 Certificate" class="certificate-image">
+                        <div class="top-perks-list">
+                            <div class="perk-item">
+                                <div class="perk-icon"><i class="ph-bold ph-gift"></i></div>
+                                <p class="perk-description">Top 10 Intern Reward: ₹15,000 stipend + Welcome kit</p>
+                            </div>
+                            <div class="perk-item">
+                                <div class="perk-icon"><i class="ph-bold ph-file-text"></i></div>
+                                <p class="perk-description">Offer Letter: Within 30 minutes</p>
+                            </div>
+                            <div class="perk-item">
+                                <div class="perk-icon"><i class="ph-bold ph-graph"></i></div>
+                                <p class="perk-description">Industry-Based Projects</p>
+                            </div>
+                        </div>
+                    </div>
+            <hr class="break">
+            <div class="section-header">
+
+                <h2 class="section-title">Additional Perks</h2>
+            </div>
+                    <div class="additional-perks-grid">
+                         <div class="perk-card">
+                            <div class="perk-icon-large"><i class="ph-bold ph-qr-code"></i></div>
+                            <p class="perk-description">Experience Letter: With QR Code</p>
+                        </div>
+                         <div class="perk-card">
+                            <div class="perk-icon-large"><i class="ph-bold ph-whatsapp-logo"></i></div>
+                            <p class="perk-description">Exclusive Job Updates on WhatsApp</p>
+                        </div>
+                         <div class="perk-card">
+                            <div class="perk-icon-large"><i class="ph-bold ph-database"></i></div>
+                            <p class="perk-description">Certificate Verification</p>
+                        </div>
+                         <div class="perk-card">
+                            <div class="perk-icon-large"><i class="ph-bold ph-users-three"></i></div>
+                            <p class="perk-description">Community Forum: Peer & mentor support</p>
+                        </div>
+                         <div class="perk-card">
+                            <div class="perk-icon-large"><i class="ph-bold ph-globe-simple"></i></div>
+                            <p class="perk-description">Internship Portal Access: Within 5 minutes</p>
+                        </div>
+                         <div class="perk-card">
+                            <div class="perk-icon-large"><i class="ph-bold ph-house"></i></div>
+                            <p class="perk-description">Virtual Internship: Work from home</p>
+                        </div>
+                    </div>
+            
+                </div>
+               </div>
+               
+            </section>
+
+              <section id="contact" class="page-section">
+                 <div class="contact-container">
+                    <h2 class="animate-in">Get In Touch</h2>
+                    <p class="animate-in">Have questions? We'd love to hear from you. Reach out and let's discuss how we can help you achieve your career goals.</p>
+                    <form class="contact-form animate-in">
+                        <input type="text" placeholder="Your Name">
+                        <input type="email" placeholder="Your Email">
+                        <textarea rows="5" placeholder="Your Message"></textarea>
+                        <button class="btn btn-primary">Send Message</button>
+                    </form>
+                 </div>
+                 <hr class="break">
+                 <div class="faq-container">
+                    <div class="faq-header-container">
+                        <h2 class="faq-section-title">Frequently Asked Questions</h2>
+                    </div>
+                    <div class="faq-list">
+                        <!-- FAQ Item 1 -->
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>What makes Inlighn Tech different from other learning platforms?</span>
+                                <i class="ph ph-plus"></i>
+                                <i class="ph ph-minus"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Inlighn Tech focuses on immersive, real-world project experience and direct mentorship from industry experts, which sets us apart from purely theoretical platforms.</p>
+                            </div>
+                        </div>
+                        <!-- FAQ Item 2 -->
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>How can I register for an internship?</span>
+                               <i class="ph ph-plus"></i>
+                               <i class="ph ph-minus"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>You can register by visiting our 'Programs' page, selecting an internship that interests you, and clicking the 'Register Now' button to fill out the application form.</p>
+                            </div>
+                        </div>
+                        <!-- Add other FAQ items similarly -->
+                         <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Is it mandatory to submit a project only from the available options on the portal?</span>
+                               <i class="ph ph-plus"></i>
+                               <i class="ph ph-minus"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>While we provide a list of recommended projects, we also encourage creativity. You can propose your own project idea for approval from your mentor.</p>
+                            </div>
+                        </div>
+                         <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Can I earn a certificate after completing an internship at Inlighn Tech?</span>
+                               <i class="ph ph-plus"></i>
+                               <i class="ph ph-minus"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Absolutely! Upon successful completion of your internship and project submission, you will receive an industry-recognized certificate from Inlighn Tech.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </section>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Login Pop-up Overlay -->
+<div id="login-popup-overlay" class="login-popup-overlay">
+    <!-- Login Pop-up Container -->
+    <div class="login-popup-container">
+        <button id="close-login-popup" class="close-popup-button" aria-label="Close Login Pop-up">
+            <i class="ph ph-x"></i> <!-- Phosphor X icon for close -->
+        </button>
+        <div class="login-popup-header">
+            <h2 class="login-popup-title">Welcome Back!</h2>
+            <p class="login-popup-subtitle">Enter your credentials to access your portal.</p>
+        </div>
+        <form class="login-form">
+            <div class="form-group">
+                <label for="username">Username / Email</label>
+                <input type="text" id="login-username" name="username" placeholder="Your username or email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="login-password" name="password" placeholder="Your password" required>
+            </div>
+            <button type="submit" class="login-submit-button">Login</button>
+        </form>
+        <div class="login-message" id="login-message"></div>
+    </div>
+</div>
+
+
+
+
+<!-- Verify Certificate Pop-up Overlay -->
+<div id="verify-popup-overlay" class="verify-popup-overlay">
+    <!-- Verify Certificate Pop-up Container -->
+    <div class="verify-popup-container">
+        <button id="close-verify-popup" class="close-popup-button" aria-label="Close Verify Certificate Pop-up">
+            <i class="ph ph-x"></i> <!-- Phosphor X icon for close -->
+        </button>
+        <div class="verify-popup-header">
+            <h2 class="verify-popup-title">Verify Certificate</h2>
+            <p class="verify-popup-subtitle">Enter your Intern ID to verify your internship certificate.</p>
+        </div>
+        <form class="verify-form">
+            <div class="form-group">
+                <label for="intern-id">Intern ID (e.g., ITID000)</label>
+                <input type="text" id="intern-id-input" name="intern-id" placeholder="Your Intern ID" required>
+            </div>
+            <button type="submit" class="verify-submit-button">Verify</button>
+        </form>
+        <div class="verify-message" id="verify-message"></div>
+    </div>
+</div>
+
+
+    <div class="whatsapp-widget-container">
+        <button id="whatsapp-toggle-btn" class="whatsapp-toggle-button" aria-label="Open WhatsApp chat">
+            <i class="ph ph-whatsapp-logo"></i>
+        </button>
+    
+        <div id="whatsapp-chatbox" class="whatsapp-chatbox">
+            <div class="chatbox-header">
+                <h3>Inlighn Tech Support</h3>
+                <span class="status-indicator">Online</span>
+            </div>
+            <div class="chatbox-messages">
+                <!-- Messages will be appended here by JS -->
+                <div class="message incoming">Hello! How can we help you today?</div>
+            </div>
+            <div class="chatbox-input-area">
+                <input type="text" id="chat-input" placeholder="Type your message...">
+                <button id="send-message-btn" class="send-message-button">
+                    <i class="ph ph-paper-plane-tilt"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-column">
+                <a href="#" class="footer-logo"><img src="https://placehold.co/150x40/010001/4de6d3?text=INLIGHN+TECH" alt="INLIGHN TECH Logo"></a>
+                <p>At INLIGHN TECH, we believe that the future of education lies in bridging the gap between academic learning and industry needs.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Menu</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Programs</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Disclaimer</a></li>
+                    <li><a href="#">FAQ's</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Follow Us</h4>
+                <ul class="footer-contact-info">
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
+                        <span>Prestige Central, Shivaji Nagar, Bengaluru, Karnataka 560001</span>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
+                        <span>+91 9368842663</span>
+                    </li>
+                    <li>
+                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
+                        <span>info@inlighntech.com</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        
+        <div class="footer-bottom">
+            Copyright 2025 INLIGHN TECH | All Rights Reserved
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

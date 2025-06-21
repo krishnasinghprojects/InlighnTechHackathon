@@ -1,0 +1,60 @@
+{
+    "aboutUs": {
+        "accreditations": [
+            {
+                "icon": "MCA.webp",
+                "text": "MINISTRY OF CORPORATE AFFAIRS"
+            },
+            {
+                "icon": "ISO.png",
+                "text": "ISO CERTIFIED"
+            },
+            {
+                "icon": "SI.png",
+                "text": "#startupindia"
+            }
+        ]
+    },
+    "internshipPrograms": [
+        {
+            "title": "Business Analyst Internship Program",
+            "image": "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=2070&auto=format&fit=crop",
+            "description": "Gain practical business analysis skills by working on real-world projects and case studies."
+        },
+        {
+            "title": "Front-End Development Internship",
+            "image": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2070&auto=format&fit=crop",
+            "description": "Kickstart your journey into web development by mastering HTML, CSS, and JavaScript."
+        },
+        {
+            "title": "Ethical Hacking with Kali Linux",
+            "image": "https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?q=80&w=1932&auto=format&fit=crop",
+            "description": "Gain practical skills in identifying and mitigating security vulnerabilities."
+        },
+        {
+            "title": "Full Stack Development Internship",
+            "image": "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=2070&auto=format&fit=crop",
+            "description": "Master both front-end and back-end technologies to build complete web applications."
+        },
+        {
+            "title": "AI & Machine Learning Internship",
+            "image": "https://images.unsplash.com/photo-1620712943543-aebc399a4c84?q=80&w=2009&auto=format&fit=crop",
+            "description": "Build a strong foundation in AI and Machine Learning with hands-on projects."
+        },
+        {
+            "title": "Data Analyst Internship",
+            "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
+            "description": "Learn how to collect, clean, analyze, and visualize data to drive business insights."
+        },
+        {
+            "title": "Offensive Cyber Security Internship",
+            "image": "https://images.unsplash.com/photo-1544890225-2fde0e66f854?q=80&w=1974&auto=format&fit=crop",
+            "description": "Dive deep into the world of ethical hacking and penetration testing techniques."
+        },
+        {
+            "title": "Data Science Internship",
+            "image": "https://images.unsplash.com/photo-1591696205602-2f950c417cb9?q=80&w=2070&auto=format&fit=crop",
+            "description": "Master the fundamentals of data science, from statistics to machine learning models."
+        }
+    ]
+}
