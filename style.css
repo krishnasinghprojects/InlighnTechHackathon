@@ -669,6 +669,9 @@ iframe { width: 100%; height: 100%; border-radius: var(--border-radius); }
     .loginPortal{
         display: none;
     }
+    .verifyPortal{
+        display: none;
+    }
 }
 
 .break {
